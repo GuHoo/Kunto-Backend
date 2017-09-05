@@ -1,0 +1,23 @@
+- if flash?
+  - if flash.notice
+    .flash.notice
+      p
+        i.fa.fa-check
+        = flash.notice
+        i.flash-close.fa.fa-times
+  - if flash.alert
+    .flash.alert
+      p
+        i.fa.fa-warning
+        = flash.alert
+        i.flash-close.fa.fa-times
+
+javascript:
+  (function() {
+    var closeIcon = document.querySelector('i.flash-close');
+    if (closeIcon) {
+      closeIcon.onclick = function() {
+        document.querySelector('.flash').remove();
+      };
+    }
+  })()

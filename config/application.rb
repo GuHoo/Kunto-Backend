@@ -32,6 +32,10 @@ module KuntoBackend
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_types = %i[datetime time]
 
+    config.sass.preferred_syntax = :sass
+    config.sass.line_comments = false
+    config.sass.cache = false
+
     # Don't generate helper and assets
     config.generators do |g|
       g.helper false
