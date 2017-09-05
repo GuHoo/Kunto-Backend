@@ -1,0 +1,2 @@
+class MenuTrain < ApplicationRecord
+end
