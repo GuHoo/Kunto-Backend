@@ -27,5 +27,15 @@ module KuntoBackend
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
+    config.active_record.time_zone_aware_types = %i[datetime time]
+
+    # Don't generate helper and assets
+    config.generators do |g|
+      g.helper false
+      g.assets false
+    end
   end
 end
