@@ -17,6 +17,14 @@ class Api::UsersController < ApiController
     end
   end
 
+  def sign_out
+    user = User.find_by(authentication_token: params[:token])
+    user.delete_authentication_token
+    render json: { message: 'success', status: 200 }, status: 200
+  rescue
+    render_400 'Invalid params'
+  end
+
   private
 
   def create_user
