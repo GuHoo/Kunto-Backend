@@ -25,7 +25,6 @@ class User < ApplicationRecord
   has_many :menu_trains
   has_many :train_records
   has_many :menus, through: :menu_trains
-  has_many :trains, through: :train_records
 
   validates :authentication_token, uniqueness: true, allow_nil: true
 
