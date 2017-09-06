@@ -1,8 +1,21 @@
 # frozen_string_literal: true
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+system('bin/rails db:migrate:reset')
+
+hukkin = Part.create(name: '腹筋')
+kyoukin = Part.create(name: '胸筋')
+jyouwannitoukin = Part.create(name: '上腕二頭筋')
+
+kuranti = Train.new(name: 'クランチ', detail: '一般的な腹筋トレーニング')
+
+kuranti.parts.push hukkin
+kuranti.parts.push kyoukin
+kuranti.parts.push jyouwannitoukin
+
+kuranti.save
+
+sample = Menu.create(name: 'サンプルトレーニング')
+
+user = User.new(email: 'sample@hoge.com', password: 'hogehoge', password_confirmation: 'hogehoge')
+
+MenuTrain.create(menu_id: sample.id, train_id: kuranti.id, user_id: user.id)

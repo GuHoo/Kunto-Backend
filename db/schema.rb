@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,69 +10,72 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_170_905_081_827) do
+ActiveRecord::Schema.define(version: 20170905081827) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'menu_trains', force: :cascade do |t|
-    t.integer 'menu_id', null: false
-    t.integer 'train_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "menu_trains", force: :cascade do |t|
+    t.integer "menu_id", null: false
+    t.integer "train_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'menus', force: :cascade do |t|
-    t.string 'name', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "menus", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'parts', force: :cascade do |t|
-    t.string 'name', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "parts", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'train_parts', force: :cascade do |t|
-    t.integer 'train_id', null: false
-    t.integer 'part_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "train_parts", force: :cascade do |t|
+    t.integer "train_id", null: false
+    t.integer "part_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'train_records', force: :cascade do |t|
-    t.datetime 'train_date', null: false
-    t.integer 'count', null: false
-    t.integer 'set_number', null: false
-    t.integer 'train_id', null: false
-    t.integer 'user_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "train_records", force: :cascade do |t|
+    t.datetime "train_date", null: false
+    t.integer "count", null: false
+    t.integer "set_number", null: false
+    t.integer "train_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'trains', force: :cascade do |t|
-    t.string 'name'
-    t.text 'detail'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "trains", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "detail", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.integer 'sign_in_count', default: 0, null: false
-    t.datetime 'current_sign_in_at'
-    t.datetime 'last_sign_in_at'
-    t.inet 'current_sign_in_ip'
-    t.inet 'last_sign_in_ip'
-    t.string 'authentication_token'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['authentication_token'], name: 'index_users_on_authentication_token', unique: true
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "authentication_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
 end

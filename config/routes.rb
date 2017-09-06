@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     delete '/users/sign_out', to: 'users#sign_out'
 
     resources :trains, only: [:index]
+    resources :menu_trains, only: [:index, :create]
     get '/my_trains', to: 'trains#my_trains'
   end
 end

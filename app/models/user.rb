@@ -24,7 +24,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :menu_trains
+  has_one :menu_train
   has_many :train_records
   has_many :menus, through: :menu_trains
 
@@ -36,9 +36,8 @@ class User < ApplicationRecord
 
   def generate_authentication_token
     loop do
-      old_token = authentication_token
-      token = SecureRandom.urlsafe_base64(24).tr('lIO0', 'sxyz')
-      break token if update!(authentication_token: token)
+      token = SecureRandom.rlsafe_base64(24).tr('lIO0', 'sxyz')
+      break token if update(authentication_token: token)
     end
   end
 
