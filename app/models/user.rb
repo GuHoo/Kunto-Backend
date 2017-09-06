@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -29,18 +31,18 @@ class User < ApplicationRecord
   validates :authentication_token, uniqueness: true, allow_nil: true
 
   def ensure_authentication_token
-    self.authentication_token || generate_authentication_token
+    authentication_token || generate_authentication_token
   end
 
   def generate_authentication_token
     loop do
-      old_token = self.authentication_token
+      old_token = authentication_token
       token = SecureRandom.urlsafe_base64(24).tr('lIO0', 'sxyz')
-      break token if self.update!(authentication_token: token)
+      break token if update!(authentication_token: token)
     end
   end
 
   def delete_authentication_token
-    self.update(authentication_token: nil)
+    update(authentication_token: nil)
   end
 end

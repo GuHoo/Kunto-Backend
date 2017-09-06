@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateMenuTrains < ActiveRecord::Migration[5.1]
   def change
     create_table :menu_trains do |t|
