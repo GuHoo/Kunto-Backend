@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     resources :trains, only: [:index]
     resources :menu_trains, only: %i[index create]
     resources :train_records, only: [:create]
-    get '/my_trains', to: 'trains#my_trains'
   end
 
   match '*path' => 'application#render_404', via: :all

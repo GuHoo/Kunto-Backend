@@ -4,10 +4,10 @@ class Api::TrainRecordsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
 
   def create
-    return render_400('Invalid parameter') if invalid_params?
+    render_400('Invalid parameter') && return if invalid_params?
     record = TrainRecord.new(train_record_params)
     record.save!
-    render json: record
+    render json: record, status: 201
   rescue ActiveRecord::RecordInvalid => e
     logger.info(e.message)
     render_404('Train record not founded')
