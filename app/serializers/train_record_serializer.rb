@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: train_records
@@ -12,7 +13,6 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-
 
 class TrainRecordSerializer < ActiveModel::Serializer
   attributes :id, :train_id, :count
