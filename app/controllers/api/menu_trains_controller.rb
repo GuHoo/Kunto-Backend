@@ -6,7 +6,7 @@ class Api::MenuTrainsController < ApiController
   def index
     menu_train = current_user.menu_train
     return render_400('not created user menu.') if menu_train.nil?
-    render json: memu_train
+    render json: menu_train
   end
 
   def create
