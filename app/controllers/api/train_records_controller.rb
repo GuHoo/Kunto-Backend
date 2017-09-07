@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
 class Api::TrainRecordsController < ApiController
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: %i[create index]
+
+  def index
+    render json: current_user.train_records
+  end
+
+  def today
+    render json: current_user.train_records.today_records
+  end
 
   def create
     render_400('Invalid parameter') && return if invalid_params?

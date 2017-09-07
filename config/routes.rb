@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
     resources :trains, only: [:index]
     resources :menu_trains, only: %i[index create]
-    resources :train_records, only: [:create]
+    resources :train_records, only: %i[index create]
+    get '/train_records/today', to: 'train_records#today'
   end
 
   match '*path' => 'application#render_404', via: :all
