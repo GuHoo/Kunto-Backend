@@ -25,8 +25,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :menu_train
+  has_many :user_trains
   has_many :train_records
-  has_many :menus, through: :menu_trains
+  has_many :trains, through: :user_trains
+  # has_many :menus, through: :menu_trains
 
   validates :authentication_token, uniqueness: true, allow_nil: true
 
