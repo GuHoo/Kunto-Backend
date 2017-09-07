@@ -41,6 +41,7 @@ Design
 ---
 
 ![](./.github/erd.png)
+![](./.github/infrastructure.svg)
 
 LISENSE
 ---
