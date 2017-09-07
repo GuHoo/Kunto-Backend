@@ -15,5 +15,5 @@
 #
 
 class TrainRecordSerializer < ActiveModel::Serializer
-  attributes :id, :train_id, :count
+  attributes :id, :train_id, :count, :set_number
 end

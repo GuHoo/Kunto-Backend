@@ -17,4 +17,8 @@
 class TrainRecord < ApplicationRecord
   belongs_to :user
   belongs_to :train
+
+  scope :today_records, -> {
+    where(train_date: DateTime.now.beginning_of_day..DateTime.now.end_of_day)
+  }
 end

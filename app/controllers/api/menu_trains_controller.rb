@@ -18,11 +18,9 @@ class Api::MenuTrainsController < ApiController
       train_ids: menu.train_ids
     }, status: 201
   rescue InvalidParameterError => e
-    logger.info(e.message)
-    render_400('Invalid parameter')
+    render_400(e.message)
   rescue ActiveRecord::RecordInvalid => e
-    logger.info(e.message)
-    render_404('Train record not founded')
+    render_404(e.message)
   end
 
   private
