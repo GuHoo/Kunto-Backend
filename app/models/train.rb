@@ -18,5 +18,5 @@ class Train < ApplicationRecord
   has_many :menu, through: :menu_trains
   has_many :parts, through: :train_parts
   has_many :users, through: :user_trains
-  belongs_to :train_record
+  has_one :train_record
 end

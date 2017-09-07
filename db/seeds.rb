@@ -5,7 +5,6 @@ kyoukin = Part.create(name: '胸筋')
 jyouwannitoukin = Part.create(name: '上腕二頭筋')
 
 crunch = Train.new(name: 'クランチ', detail: '一般的な腹筋トレーニング')
-
 crunch.parts.push hukkin
 crunch.parts.push kyoukin
 crunch.parts.push jyouwannitoukin

@@ -16,5 +16,5 @@
 
 class TrainRecord < ApplicationRecord
   belongs_to :user
-  has_one :train
+  belongs_to :train
 end
