@@ -17,9 +17,11 @@ class Api::MenuTrainsController < ApiController
       name: menu.name,
       train_ids: menu.train_ids
     }, status: 201
-  rescue InvalidParameterError => _
+  rescue InvalidParameterError => e
+    logger.info(e.message)
     render_400('Invalid parameter')
-  rescue ActiveRecord::RecordInvalid => _
+  rescue ActiveRecord::RecordInvalid => e
+    logger.info(e.message)
     render_404('Train record not founded')
   end
 
@@ -27,21 +29,21 @@ class Api::MenuTrainsController < ApiController
 
   def name
     n = params[:menu].fetch(:name)
-    raise InvalidParameterError.new('Did not expected empty name') unless n
+    raise InvalidParameterError, 'Did not expected empty name' unless n
     n
   end
 
   def menu_trains
     mt = params[:menu].fetch(:menu_trains)
-    raise InvalidParameterError.new('Did not expected empty menu_trains') unless mt
+    raise InvalidParameterError, 'Did not expected empty menu_trains' unless mt
     mt
   end
 
   def create_menu_train(menu_train, menu_id)
     train_id = menu_train.fetch(:train_id)
     count = menu_train.fetch(:count)
-    raise InvalidParameterError.new('Did not expected empty train_id of menu_trains') if train_id.blank?
-    raise InvalidParameterError.new('Did not expected empty count of menu_trains') if count.blank?
+    raise InvalidParameterError, 'Did not expected empty train_id of menu_trains' if train_id.blank?
+    raise InvalidParameterError, 'Did not expected empty count of menu_trains' if count.blank?
     UserTrain.create!(user_id: current_user.id, train_id: train_id, count: count)
     MenuTrain.create!(user_id: current_user.id, train_id: train_id, menu_id: menu_id)
   end

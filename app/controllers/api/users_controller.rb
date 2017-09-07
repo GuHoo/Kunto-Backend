@@ -29,16 +29,16 @@ class Api::UsersController < ApiController
 
   private
 
-    def create_user
-      user = User.new(
-        email: params['email'],
-        password: params['password'],
-        password_confirmation: params['password_confirmation']
-      )
-      user.save
-      user.ensure_authentication_token
-      user
-    rescue
-      false
-    end
+  def create_user
+    user = User.new(
+      email: params['email'],
+      password: params['password'],
+      password_confirmation: params['password_confirmation']
+    )
+    user.save
+    user.ensure_authentication_token
+    user
+  rescue
+    false
+  end
 end
