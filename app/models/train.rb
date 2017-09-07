@@ -1,12 +1,11 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: trains
 #
 #  id         :integer          not null, primary key
-#  name       :string
-#  detail     :text
+#  name       :string           not null
+#  detail     :text             default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
