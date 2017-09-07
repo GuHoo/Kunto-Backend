@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApiController < ActionController::API
+  class InvalidParameterError < RuntimeError; end
+
   protected
 
   def render_400(message = 'Bad Request')
@@ -15,6 +17,13 @@ class ApiController < ActionController::API
       message: message,
       status: 401
     }, status: 401
+  end
+
+  def render_404(message = 'Not found')
+    render json: {
+      message: message,
+      status: 404
+    }, status: 404
   end
 
   def authenticate_user!
