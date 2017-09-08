@@ -20,6 +20,7 @@ sample = Menu.create(name: 'サンプルトレーニング')
 
 user = User.new(email: 'sample@hoge.com', password: 'hogehoge', password_confirmation: 'hogehoge')
 user.save
+user.ensure_authentication_token
 
 UserTrain.create(user_id: user.id, train_id: crunch.id, count: 100, train_week_day: Date.today, set_count: 3)
 UserTrain.create(user_id: user.id, train_id: move.id, count: 200, train_week_day: Date.today + 1, set_count: 7)
