@@ -40,9 +40,19 @@ class Api::MenuTrainsController < ApiController
   def create_menu_train(menu_train, menu_id)
     train_id = menu_train.fetch(:train_id)
     count = menu_train.fetch(:count)
+    set_count = menu_train.fetch(:set_count)
+    train_week_day = menu_train.fetch(:train_week_day)
     raise InvalidParameterError, 'Did not expected empty train_id of menu_trains' if train_id.blank?
     raise InvalidParameterError, 'Did not expected empty count of menu_trains' if count.blank?
-    UserTrain.create!(user_id: current_user.id, train_id: train_id, count: count)
+    raise InvalidParameterError, 'Did not expected empty train_id of set_count' if set_count.blank?
+    raise InvalidParameterError, 'Did not expected empty count of train_week_day' if train_week_day.blank?
+    UserTrain.create!(
+      user_id: current_user.id,
+      train_id: train_id,
+      count: count,
+      set_count: set_count,
+      train_week_day: (Date.new - 1) + train_week_day
+    )
     MenuTrain.create!(user_id: current_user.id, train_id: train_id, menu_id: menu_id)
   end
 end
