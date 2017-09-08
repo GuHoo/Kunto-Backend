@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root to: 'dashboard#index'
+
   namespace :api, defaults: { format: :json } do
     post '/users/sign_up', to: 'users#sign_up'
     post '/users/sign_in', to: 'users#sign_in'

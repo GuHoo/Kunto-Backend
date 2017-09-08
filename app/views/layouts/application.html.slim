@@ -34,22 +34,20 @@ html
     title
       | 薫陶
     = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    /= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    script src='http://133.92.145.210:3000/packs/application.js'
   body
     .navbar-fixed
       nav.green
         .row
           .col.s12
             .nav-wrapper
-              / - path = user_signed_in? ? my_path : root_path
-              / = link_to root_path
-                p.nav-img-container
-                  / img.nav-img src="#{asset_path 'icon_red.png'}"
     = render 'layouts/flash'
     .row
       .blank
-        = yield
+        #content
     footer.page-footer.orange#footer
       .container
         .row
