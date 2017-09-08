@@ -81,5 +81,4 @@ test:
 production:
   <<: *default
   database: Kunto-Backend_production
-  username: Kunto-Backend
-  password: <%= ENV['KUNTO-BACKEND_DATABASE_PASSWORD'] %>
+  password: <%= ENV['KUNTO_BACKEND_DATABASE_PASSWORD'] %>
