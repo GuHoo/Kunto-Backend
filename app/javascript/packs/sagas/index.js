@@ -1,4 +1,4 @@
-import { fork } from 'redux-saga/effects';
+import { fork, take } from 'redux-saga/effects';
 import * as actions from '../actions';
 
 const x = undefined;
@@ -10,5 +10,5 @@ function* sampleSaga() {
 }
 
 export default function* rootSaga() {
-  yield fork(modalSaga);
+  yield fork(sampleSaga);
 }
