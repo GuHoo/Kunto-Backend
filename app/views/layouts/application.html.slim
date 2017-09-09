@@ -36,8 +36,7 @@ html
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    /= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    script src='http://133.92.145.210:3000/packs/application.js'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .navbar-fixed
       nav.green
