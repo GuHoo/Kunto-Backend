@@ -15,6 +15,17 @@
   <b><a href="#license">License</a></b>
 </p>
 
+Demo
+---
+
+![](./.github/title.png)
+
+Design
+---
+
+![](./.github/erd.png)
+![](./.github/infrastructure.svg)
+
 QuickStart
 ---
 
@@ -36,12 +47,6 @@ Dependences
 - **node** `>=` 8.0.0
   - **yarn** `>=` 0.24.5
 - **postgresql** `>=` 9.4.5
-
-Design
----
-
-![](./.github/erd.png)
-![](./.github/infrastructure.svg)
 
 LISENSE
 ---

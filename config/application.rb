@@ -33,6 +33,7 @@ module KuntoBackend
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_types = %i[datetime time]
+    config.assets.paths << config.root.join('node_modules')
 
     config.sass.preferred_syntax = :sass
     config.sass.line_comments = false
