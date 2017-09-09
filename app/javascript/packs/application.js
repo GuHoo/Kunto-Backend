@@ -9,6 +9,10 @@ import { initalState } from './reducers'
 
 const store = createStore(initalState);
 
+if (process.env.NODE_ENV === 'development') {
+  require('react-hot-loader/patch');
+}
+
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>

@@ -5,6 +5,10 @@ const sharedConfig = require('./shared.js')
 const { settings, output } = require('./configuration.js')
 
 module.exports = merge(sharedConfig, {
+  entry: {
+    'webpack/hot/only-dev-server': 'webpack/hot/only-dev-server',
+  },
+
   devtool: 'inline-source-map',
 
   stats: {
