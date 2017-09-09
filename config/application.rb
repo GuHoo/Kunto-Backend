@@ -39,6 +39,8 @@ module KuntoBackend
     config.sass.line_comments = false
     config.sass.cache = false
 
+    config.rack_dev_mark.enable = !Rails.env.production?
+
     # Don't generate helper and assets
     config.generators do |g|
       g.helper false

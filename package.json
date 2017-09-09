@@ -13,6 +13,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "classnames": "^2.2.5",
     "coffee-loader": "^0.8.0",
     "coffee-script": "^1.12.7",
     "compression-webpack-plugin": "^1.0.0",
