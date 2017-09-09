@@ -1,13 +1,15 @@
 import 'babel-polyfill';
-import React from 'react';
-import { Provider } from 'react-redux';
-import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
 import App from './containers/App';
+import InjectTapEventPlugin from 'react-tap-event-plugin';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import createStore from './stores';
+import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
 import { initalState } from './reducers'
 
 const store = createStore(initalState);
+InjectTapEventPlugin();
 
 if (process.env.NODE_ENV === 'development') {
   require('react-hot-loader/patch');

@@ -28,7 +28,6 @@ class User < ApplicationRecord
   has_many :user_trains
   has_many :train_records
   has_many :trains, through: :user_trains
-  # has_many :menus, through: :menu_trains
 
   validates :authentication_token, uniqueness: true, allow_nil: true
 
@@ -39,7 +38,8 @@ class User < ApplicationRecord
   def generate_authentication_token
     loop do
       token = SecureRandom.urlsafe_base64(24).tr('lIO0', 'sxyz')
-      break token if update(authentication_token: token)
+      result = update(authentication_token: token)
+      break if result
     end
   end
 

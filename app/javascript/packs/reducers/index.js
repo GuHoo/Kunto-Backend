@@ -3,17 +3,18 @@ import { createReducer } from 'redux-act';
 import * as actions from '../actions'
 
 export const initalState = {
-  sample: '',
+  user: ''
 };
 
-const sample = createReducer({
-  [actions.sampleAction]: (state, payload) => {
-    return state;
+const user = createReducer({
+  [actions.successSignUp]: (state, payload) => {
+    console.log(state)
+    console.log(payload)
   }
-}, initalState);
+}, initalState.user)
 
 export default combineReducers(
   {
-    sample,
+    user,
   }
 );

@@ -30,6 +30,8 @@ class Api::UsersController < ApiController
   private
 
   def create_user
+    user = User.find_by(email: params[:email])
+    return false unless user.nil?
     user = User.new(
       email: params['email'],
       password: params['password'],

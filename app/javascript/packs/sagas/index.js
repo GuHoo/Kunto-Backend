@@ -1,14 +1,35 @@
-import { fork, take } from 'redux-saga/effects';
+import { fork, take, put, call, takeEvery } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+import axios from 'axios';
 import * as actions from '../actions';
 
 const x = undefined;
 
-function* sampleSaga() {
-  while (typeof x === 'undefined') {
-    yield take(`${actions.sampleAction}`);
+const url = (path) => (
+  `${process.env.RAILS_API_SERVER}/api/${path}`
+);
+
+const signUpRequest = ({ email, password, passwordConfirmation }) => (
+  axios.post(url('/users/sign_up'), {
+    email,
+    password,
+    password_confirmation: passwordConfirmation,
+  })
+);
+
+function* signUpSaga(action) {
+  const { payload } = action;
+  yield put(actions.fetchStart);
+  try {
+    const response = yield call(signUpRequest, payload);
+    yield delay(200);
+    yield put(actions.successSignUp(response.data));
+  } catch (err) {
+    yield put(actions.failXHR(err));
   }
+  yield put(actions.fetchEnd);
 }
 
 export default function* rootSaga() {
-  yield fork(sampleSaga);
+  yield takeEvery(`${actions.trySignUp}`, signUpSaga);
 }

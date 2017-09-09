@@ -4,6 +4,7 @@
 /* eslint import/no-dynamic-require: 0 */
 
 const webpack = require('webpack')
+const Dotenv = require('dotenv-webpack')
 const { basename, dirname, join, relative, resolve } = require('path')
 const { sync } = require('glob')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -41,7 +42,8 @@ const config = {
     new ManifestPlugin({
       publicPath: output.publicPath,
       writeToFileEmit: true
-    })
+    }),
+    new Dotenv({ path: `${__dirname}/../../.env` }),
   ],
 
   resolve: {
