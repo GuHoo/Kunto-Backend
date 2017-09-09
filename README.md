@@ -6,11 +6,15 @@
 </div>
 
 <p align="center">
+  <b><a href="#demo">Demo</a></b>
+  |
+  <b><a href="#design">Design</a></b>
+  |
   <b><a href="#quickstart">Quickstart</a></b>
   |
-  <b><a href="#dependences">Dependences</a></b>
+  <b><a href="#environment">Environment</a></b>
   |
-  <b><a href="#design">design</a></b>
+  <b><a href="#dependences">Dependences</a></b>
   |
   <b><a href="#license">License</a></b>
 </p>
@@ -37,6 +41,16 @@ $ bundle exec rails server
 $ bundle exec rake db:create
 $ bundle exec rake db:migrate
 $ cd client && npm run build:development
+```
+
+Environment
+---
+
+- example
+
+```
+WEBPACKER_DEV_SERVER='http://localhost:8080'
+RAILS_API_SERVER='http://localhost:3000'
 ```
 
 Dependences
