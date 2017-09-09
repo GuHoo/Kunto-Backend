@@ -1,10 +1,12 @@
 import React from 'react';
-import Head from './Head';
+import Header from './Header';
+import Footer from './Footer';
 
 export default function Dashboard() {
   return (
     <div>
-      <Head />
+      <Header />
+      <Footer />
     </div>
   );
 }

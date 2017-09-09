@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Head.sass';
+import styles from './Header.sass';
 import { Link } from 'react-router-dom';
 
 export default function Head() {
