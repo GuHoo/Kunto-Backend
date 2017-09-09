@@ -37,13 +37,18 @@ html
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    /= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     meta name="viewport" content="width=device-width, inital-scake=1.0"
-    script src="#{ENV['WEBPACKER_DEV_SERVER']}/packs/application.js"
-    link[
-      rel="stylesheet"
-      type="text/css"
-      href="#{ENV['WEBPACKER_DEV_SERVER']}/packs/application.css"
-    ]
+
+    - if Rails.env == 'development'
+      script src="#{ENV['WEBPACKER_DEV_SERVER']}/packs/application.js"
+      link[
+        rel="stylesheet"
+        type="text/css"
+        href="#{ENV['WEBPACKER_DEV_SERVER']}/packs/application.css"
+      ]
+    - else
+      = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+      = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+
   body
     #content
