@@ -21,5 +21,9 @@
 #
 
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :authentication_token
+  attributes :id, :email, :token
+
+  def token
+    object.authentication_token
+  end
 end

@@ -9,11 +9,9 @@ export default function Head() {
         <img src="icon_blue_transport.png" />
       </div>
       <p className={styles.bigTitle}>薫陶 - Kunto -</p>
-      <p className={styles.description}>
-        ダイエットに挫折したあなた<br />
-        筋トレが継続できないあなた<br />
-        運動不足のあなた<br />
-      </p>
+      <p className={styles.description}>ダイエットに挫折したあなた</p>
+      <p className={styles.description}>筋トレが継続できないあなた</p>
+      <p className={styles.description}>運動不足のあなた</p>
       <p className={styles.subTitle}>
         薫陶で筋トレを始めませんか？
       </p>

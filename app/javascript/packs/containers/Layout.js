@@ -1,6 +1,7 @@
 import React from 'react';
 import RouteCSSTransitionGroup from './RouteCSSTransitionGroup';
 import Nav from '../components/nav';
+import Snackbar from '../components/snackbar';
 
 export default function Layout({ children }) {
   return (
@@ -12,6 +13,7 @@ export default function Layout({ children }) {
       >
         {children}
       </RouteCSSTransitionGroup>
+      <Snackbar />
     </div>
   );
 }

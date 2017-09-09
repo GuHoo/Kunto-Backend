@@ -7,3 +7,6 @@ export const fetchStart = createAction('FETCH_START');
 export const fetchEnd = createAction('FETCH_END');
 
 export const failXHR = createAction('FAIL_XHR');
+
+export const openSnackbar = createAction('OPEN_SNACKBAR');
+export const closeSnackbar = createAction('CLOSE_SNACKBAR');

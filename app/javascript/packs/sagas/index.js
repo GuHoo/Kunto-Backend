@@ -19,17 +19,28 @@ const signUpRequest = ({ email, password, passwordConfirmation }) => (
 
 function* signUpSaga(action) {
   const { payload } = action;
-  yield put(actions.fetchStart);
+  yield put(actions.fetchStart());
   try {
     const response = yield call(signUpRequest, payload);
     yield delay(200);
     yield put(actions.successSignUp(response.data));
-  } catch (err) {
-    yield put(actions.failXHR(err));
+  } catch (_err) {
+    yield delay(200);
+    yield put(actions.failXHR({
+      message: 'すでに登録されたメールアドレスか，パスワードに入力ミスがあります'
+    }));
   }
-  yield put(actions.fetchEnd);
+  yield put(actions.fetchEnd());
+}
+
+function* errorHandlingSaga(action) {
+  const { payload } = action;
+  yield put(actions.openSnackbar({ message: payload.message }));
+  yield delay(10000);
+  yield(put(actions.closeSnackbar()));
 }
 
 export default function* rootSaga() {
   yield takeEvery(`${actions.trySignUp}`, signUpSaga);
+  yield takeEvery(`${actions.failXHR}`, errorHandlingSaga);
 }

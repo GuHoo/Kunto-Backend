@@ -37,7 +37,7 @@ class Api::UsersController < ApiController
       password: params['password'],
       password_confirmation: params['password_confirmation']
     )
-    user.save
+    user.save!
     user.ensure_authentication_token
     user
   rescue
