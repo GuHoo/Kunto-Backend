@@ -7,6 +7,7 @@ import {
 import { Provider } from 'react-redux';
 import Layout from './Layout';
 import Dashboard from '../components/dashboard';
+import Login from '../components/login';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       <Layout>
         <Switch>
           <Route exact path="/" component={Dashboard} />
+          <Route path="/login" component={Login} />
           <Route component={Dashboard} />
         </Switch>
       </Layout>

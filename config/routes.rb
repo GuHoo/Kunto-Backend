@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     resources :train_records, only: %i[index create]
     resources :menus, only: [:index]
     get '/train_records/today', to: 'train_records#today'
+
   end
 
+  get '*path' => redirect('/')
   match '*path' => 'application#render_404', via: :all if Rails.env != 'development'
 end
