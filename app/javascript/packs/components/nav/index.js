@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Circular from '../circular';
 
 export default class Nav extends React.Component {
   static contextTypes = {
@@ -21,6 +22,9 @@ export default class Nav extends React.Component {
                 <ul className="right">
                   <li>
                     <Link to="/login">Log in</Link>
+                  </li>
+                  <li>
+                    <Circular />
                   </li>
                 </ul>
               </div>

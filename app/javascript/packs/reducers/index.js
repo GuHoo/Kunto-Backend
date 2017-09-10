@@ -6,7 +6,7 @@ import Snackbar from '../models/snackbar';
 
 export const initalState = {
   user: { state: null },
-  waitting: null,
+  waitting: { state: false },
   snackbar: { state: new Snackbar() },
 };
 
@@ -18,8 +18,8 @@ const user = createReducer({
 }, initalState.user);
 
 const waitting = createReducer({
-  [actions.fetchStart]: () => true,
-  [actions.fetchEnd]: () => false,
+  [actions.fetchStart]: () => ({ state: true }),
+  [actions.fetchEnd]: () => ({ state: false }),
 }, initalState.waitting);
 
 const snackbar = createReducer({
