@@ -31,6 +31,7 @@ function* signInSaga(action) {
     yield delay(200);
     yield put(actions.successSignIn(response.data));
     yield put(push('/my'));
+    yield put(actions.openSnackbar({ message: 'おかえりなさい' }));
   } catch (_err) {
     yield delay(200);
     yield put(actions.failXHR({
@@ -47,7 +48,8 @@ function* signUpSaga(action) {
     const response = yield call(signUpRequest, payload);
     yield delay(200);
     yield put(actions.successSignUp(response.data));
-    yield put('/my');
+    yield put(push('/my'));
+    yield put(actions.openSnackbar({ message: 'ようこそ，薫陶へ' }));
   } catch (_err) {
     yield delay(200);
     yield put(actions.failXHR({
