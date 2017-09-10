@@ -1,10 +1,13 @@
+import { isEmpty } from 'lodash';
 import React from 'react';
-import styles from './Header.sass';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import styles from './Header.sass';
+import User from '../../models/user';
 
 export default function Head() {
   const button = classNames('waves-effect', 'waves-light', 'btn', styles.button);
+  const isAuthenticated = !isEmpty(User.currentUserToken());
   return (
     <div className={styles.container}>
       <div className={styles.logoWrapper}>
@@ -17,20 +20,39 @@ export default function Head() {
       <p className={styles.subTitle}>
         薫陶で筋トレを始めませんか？
       </p>
-      <div className={styles.buttonGroup}>
-        <Link
-          to="signup"
-          className={button}
-        >
-          新規登録して薫陶をはじめる
-        </Link>
-        <Link
-          to="login"
-          className={button}
-        >
-          ログインはこちら
-        </Link>
-      </div>
+      {
+        (() => {
+          if (isAuthenticated) {
+            const primaryButton = classNames(button, 'teal', 'darken-1');
+            return (
+              <div className={styles.buttonGroup}>
+                <Link
+                  to="my"
+                  className={primaryButton}
+                >
+                  マイページに行く
+                </Link>
+              </div>
+            );
+          }
+          return (
+            <div className={styles.buttonGroup}>
+              <Link
+                to="signup"
+                className={button}
+              >
+                新規登録して薫陶をはじめる
+              </Link>
+              <Link
+                to="login"
+                className={button}
+              >
+                ログインはこちら
+              </Link>
+            </div>
+          );
+        })()
+      }
     </div>
   );
 }
