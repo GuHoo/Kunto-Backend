@@ -37,7 +37,7 @@ function* errorHandlingSaga(action) {
   const { payload } = action;
   yield put(actions.openSnackbar({ message: payload.message }));
   yield delay(10000);
-  yield(put(actions.closeSnackbar()));
+  yield put(actions.closeSnackbar());
 }
 
 export default function* rootSaga() {
