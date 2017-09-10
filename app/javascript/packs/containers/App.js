@@ -24,20 +24,20 @@ function App({ state }) {
             isAuthenticated={isAuthenticated}
             isPrivate={false}
             to="/my"
-            path="/login"
+            path="/sign_in"
             component={Login}
           />
           <AuthRoute
             isAuthenticated={isAuthenticated}
             isPrivate={false}
             to="/my"
-            path="/signup"
+            path="/sign_up"
             component={Signup}
           />
           <AuthRoute
             isAuthenticated={isAuthenticated}
             isPrivate={true}
-            to="/login"
+            to="/sign_in"
             path="/my"
             component={My}
           />

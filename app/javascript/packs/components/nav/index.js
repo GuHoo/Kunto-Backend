@@ -21,7 +21,7 @@ export default class Nav extends React.Component {
               <div className="nav-wrapper">
                 <ul className="right">
                   <li>
-                    <Link to="/login">Log in</Link>
+                    <Link to="/sign_in">Log in</Link>
                   </li>
                   <li>
                     <Circular />

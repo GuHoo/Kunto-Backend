@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     get '/train_records/today', to: 'train_records#today'
   end
 
-  get '*path' => redirect('/')
+  get '/sign_in', to: 'dashboard#index'
+  get '/sign_up', to: 'dashboard#index'
+  get '/my', to: 'dashboard#index'
+
   match '*path' => 'application#render_404', via: :all if Rails.env != 'development'
 end

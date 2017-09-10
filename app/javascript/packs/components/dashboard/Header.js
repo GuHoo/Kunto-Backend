@@ -38,13 +38,13 @@ export default function Head() {
           return (
             <div className={styles.buttonGroup}>
               <Link
-                to="signup"
+                to="sign_up"
                 className={button}
               >
                 新規登録して薫陶をはじめる
               </Link>
               <Link
-                to="login"
+                to="sign_in"
                 className={button}
               >
                 ログインはこちら

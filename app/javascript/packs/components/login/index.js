@@ -81,7 +81,7 @@ class Login extends React.Component {
                 アカウントがない方はこちらからユーザーを作成してください
               </div>
               <div className="card-action">
-                <Link to="/signup">ユーザーを作成する</Link>
+                <Link to="/sign_up">ユーザーを作成する</Link>
               </div>
             </div>
           </div>
