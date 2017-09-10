@@ -1,14 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import autoBind from 'react-autobind';
+import { trySignIn } from '../../actions';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   static contextTypes = {
     router: PropTypes.object,
   }
 
   constructor(props, context) {
     super(props, context);
+    this.state = {
+      email: '',
+      password: '',
+    };
+    autoBind(this);
+  }
+
+  onSubmit() {
+    const { email, password } = this.state;
+    this.props.dispatch(trySignIn({ email, password }));
+  }
+
+  onChangeEmail(e) {
+    const email = e.target.value;
+    this.setState({ email });
+  }
+
+  onChangePassword(e) {
+    const password = e.target.value;
+    this.setState({ password });
   }
 
   render() {
@@ -22,17 +45,29 @@ export default class Login extends React.Component {
                 <span className="card-title">ログイン</span>
                 <div className="row">
                   <div className="input-field col s12">
-                    <input id="email" type="email" className="validate" />
+                    <input
+                      value={this.state.email}
+                      id="email"
+                      type="email"
+                      className="validate"
+                      onChange={this.onChangeEmail}
+                    />
                     <label htmlFor="email">Email</label>
                   </div>
                   <div className="input-field col s12">
-                    <input id="password" type="password" className="validate" />
+                    <input
+                      value={this.state.password}
+                      id="password"
+                      type="password"
+                      className="validate"
+                      onChange={this.onChangePassword}
+                    />
                     <label htmlFor="password">Password</label>
                   </div>
                 </div>
               </div>
               <div className="card-action">
-                <a>ログインする</a>
+                <a onClick={this.onSubmit}>ログインする</a>
               </div>
             </div>
           </div>
@@ -56,3 +91,7 @@ export default class Login extends React.Component {
     );
   }
 }
+
+export default connect(
+  state => state.user
+)(Login);

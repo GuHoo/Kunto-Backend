@@ -14,7 +14,11 @@ const user = createReducer({
   [actions.successSignUp]: (_1, payload) => {
     const user = new User(payload);
     return { state: user };
-  }
+  },
+  [actions.successSignIn]: (_1, payload) => {
+    const user = new User(payload);
+    return { state: user };
+  },
 }, initalState.user);
 
 const waitting = createReducer({

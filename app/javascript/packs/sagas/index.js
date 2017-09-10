@@ -17,6 +17,29 @@ const signUpRequest = ({ email, password, passwordConfirmation }) => (
   })
 );
 
+const signInRequest = ({ email, password }) => (
+  axios.post(url('/users/sign_in'), {
+    email,
+    password,
+  })
+)
+
+function* signInSaga(action) {
+  const { payload } = action;
+  yield put(actions.fetchStart());
+  try {
+    const response = yield call(signInRequest, payload);
+    yield delay(200);
+    yield put(actions.successSignIn(response.data));
+  } catch (_err) {
+    yield delay(200);
+    yield put(actions.failXHR({
+      message: '登録されていないメールアドレス，もしくはパスワードに入力ミスがあります'
+    }));
+  }
+  yield put(actions.fetchEnd());
+}
+
 function* signUpSaga(action) {
   const { payload } = action;
   yield put(actions.fetchStart());
@@ -43,4 +66,5 @@ function* errorHandlingSaga(action) {
 export default function* rootSaga() {
   yield takeEvery(`${actions.trySignUp}`, signUpSaga);
   yield takeEvery(`${actions.failXHR}`, errorHandlingSaga);
+  yield takeEvery(`${actions.trySignIn}`, signInSaga);
 }

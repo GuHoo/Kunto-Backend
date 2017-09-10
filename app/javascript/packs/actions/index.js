@@ -3,6 +3,9 @@ import { createAction } from 'redux-act';
 export const trySignUp = createAction('TRY_SIGN_UP');
 export const successSignUp = createAction('SUCCESS_SIGN_UP');
 
+export const trySignIn = createAction('TRY_SIGN_IN');
+export const successSignIn = createAction('SUCCESS_SIGN_IN');
+
 export const fetchStart = createAction('FETCH_START');
 export const fetchEnd = createAction('FETCH_END');
 
