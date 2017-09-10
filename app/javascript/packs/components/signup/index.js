@@ -19,6 +19,10 @@ class Signup extends React.Component {
     autoBind(this);
   }
 
+  componentWillMount() {
+    if (this.props.state.token !== '') this.props.history.push('/my');
+  }
+
   onChangeEmail(e) {
     const email = e.target.value;
     this.setState({ email });
@@ -97,4 +101,6 @@ class Signup extends React.Component {
   }
 }
 
-export default connect(state => state)(Signup);
+export default connect(
+  state => state.user
+)(Signup);
