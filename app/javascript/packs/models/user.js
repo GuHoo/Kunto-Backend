@@ -1,10 +1,38 @@
-export default class User {
-  constructor({ id, email, token }) {
-    this._id = id;
-    this._email = email;
-    this._token = token;
+import _ from 'lodash';
 
-    localStorage.setItem('token', token);
+export default class User {
+  constructor(obj) {
+    if (this.invalidArguments(obj)) return;
+    this._id = obj.id;
+    this._email = obj.email;
+    this._token = obj.token;
+    this.store();
+  }
+
+  store() {
+    const obj = {
+      id: this._id,
+      email: this._email,
+      token: this._token,
+    };
+    localStorage.setItem('user', JSON.stringify(obj));
+  }
+
+  restore() {
+    const anyJson = localStorage.getItem('user');
+    if (!anyJson) return;
+    const obj = JSON.parse(anyJson);
+    this._id = _.get(obj, 'id', null);
+    this._email = _.get(obj, 'email', null);
+    this._token = _.get(obj, 'token', null);
+    return this;
+  }
+
+  invalidArguments(obj) {
+    const id = _.get(obj, 'id', null);
+    const email = _.get(obj, 'email', null);
+    const token = _.get(obj, 'token', null);
+    return _.isNil(id) || _.isNil(email) || _.isNil(token);
   }
 
   get id() {
@@ -12,15 +40,19 @@ export default class User {
   }
 
   get email() {
-    return this.email;
+    return this._email;
   }
 
   get token() {
-    return this.token;
+    return this._token;
   }
 
   static currentUserToken() {
-    return localStorage.getItem('token');
+    const anyJson = localStorage.getItem('user');
+    if (!anyJson) return null;
+    const obj = JSON.parse(anyJson);
+    return _.get(obj, 'token', null);
   }
 }
 
+window.User = User;

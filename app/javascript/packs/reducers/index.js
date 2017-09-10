@@ -5,7 +5,7 @@ import User from '../models/user';
 import Snackbar from '../models/snackbar';
 
 export const initalState = {
-  user: { state: null },
+  user: { state: new User().restore() },
   waitting: { state: false },
   snackbar: { state: new Snackbar() },
 };
