@@ -1,7 +1,9 @@
+import { isEmpty } from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Circular from '../circular';
+import User from '../../models/user';
 
 export default class Nav extends React.Component {
   static contextTypes = {
@@ -13,6 +15,7 @@ export default class Nav extends React.Component {
   }
 
   render() {
+    const isAuthenticated = !isEmpty(User.currentUserToken());
     return (
       <div className="navbar-fixed">
         <nav>
@@ -21,7 +24,19 @@ export default class Nav extends React.Component {
               <div className="nav-wrapper">
                 <ul className="right">
                   <li>
-                    <Link to="/sign_in">Log in</Link>
+                    {
+                      (() => {
+                        if (isAuthenticated) {
+                          return (
+                            <Link to="#">
+                              <span className="fa fa-line-chart" />
+                              トレーニングを記録する
+                            </Link>
+                          );
+                        }
+                        return <Link to="/sign_in">Log in</Link>;
+                      })()
+                    }
                   </li>
                   <li>
                     <Circular />

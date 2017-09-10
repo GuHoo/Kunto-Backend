@@ -54,5 +54,3 @@ export default class User {
     return _.get(obj, 'token', null);
   }
 }
-
-window.User = User;
