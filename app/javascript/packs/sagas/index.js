@@ -1,9 +1,8 @@
 import { fork, take, put, call, takeEvery } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
+import { push } from 'react-router-redux';
 import axios from 'axios';
 import * as actions from '../actions';
-
-const x = undefined;
 
 const url = (path) => (
   `${process.env.RAILS_API_SERVER}/api/${path}`
@@ -31,6 +30,7 @@ function* signInSaga(action) {
     const response = yield call(signInRequest, payload);
     yield delay(200);
     yield put(actions.successSignIn(response.data));
+    yield put(push('/my'));
   } catch (_err) {
     yield delay(200);
     yield put(actions.failXHR({
@@ -47,6 +47,7 @@ function* signUpSaga(action) {
     const response = yield call(signUpRequest, payload);
     yield delay(200);
     yield put(actions.successSignUp(response.data));
+    yield put('/my');
   } catch (_err) {
     yield delay(200);
     yield put(actions.failXHR({

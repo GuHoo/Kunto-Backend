@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { get,  } from 'lodash'
 import React from 'react';
 import {
   Switch,
@@ -14,7 +14,7 @@ import My from '../components/my';
 import AuthRoute from '../components/auth';
 
 function App({ state }) {
-  const isAuthenticated = !_.isEmpty(state.token);
+  const isAuthenticated = !_.flow([e => _.get(e, 'token'), _.isEmpty])(state);
   return (
     <Router>
       <Layout>
