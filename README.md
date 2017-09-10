@@ -1,5 +1,6 @@
 <div name="top" align="center">
   <img
+    width="300px"
     src="./.github/icon_blue_w.png"
     alt="logo images"
   />
@@ -21,6 +22,13 @@
 
 Demo
 ---
+
+<div name="top" align="center">
+  <img
+    src="./.github/phone.png"
+    alt="screenshot on phone"
+  />
+</div>
 
 ![](./.github/title.png)
 
