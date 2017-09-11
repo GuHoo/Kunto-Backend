@@ -3,7 +3,7 @@ import autoBind from 'react-autobind';
 import { connect } from 'react-redux';
 import { fetchTrainingRecord } from '../../actions';
 
-class My extends React.Component  {
+class My extends React.Component {
   constructor(props) {
     super(props);
   }
