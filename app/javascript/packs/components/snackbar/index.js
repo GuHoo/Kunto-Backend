@@ -27,7 +27,8 @@ class Snackbar extends Component {
   }
 
   onClose() {
-    this.props.dispatch(closeSnackbar());
+    closeSnackbar()
+      >> this.props.dispatch;
   }
 
   render() {
@@ -45,6 +46,6 @@ class Snackbar extends Component {
   }
 }
 
-export default connect(
+export default Snackbar >> connect(
   state => state.snackbar,
-)(Snackbar);
+);

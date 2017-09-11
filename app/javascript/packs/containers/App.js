@@ -1,4 +1,4 @@
-import { get,  } from 'lodash'
+import { get } from 'lodash'
 import React from 'react';
 import {
   Switch,
@@ -13,8 +13,12 @@ import Signup from '../components/signup';
 import My from '../components/my';
 import AuthRoute from '../components/auth';
 
+const getToken = e => _.get(e, 'token')
+const not = e => !e;
+
 function App({ state }) {
-  const isAuthenticated = !_.flow([e => _.get(e, 'token'), _.isEmpty])(state);
+  //  isAuthenticated = State -> Maybe String -> Bool -> Bool
+  const isAuthenticated = state >> getToken >> _.isEmpty >> not;
   return (
     <Router>
       <Layout>
@@ -48,6 +52,6 @@ function App({ state }) {
   );
 }
 
-export default connect(
+export default App >> connect(
   state => state.user
-)(App);
+);

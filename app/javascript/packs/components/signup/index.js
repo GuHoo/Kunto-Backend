@@ -41,12 +41,9 @@ class Signup extends React.Component {
   }
 
   onSubmitUserInfo() {
-    const {
-      email,
-      password,
-      passwordConfirmation,
-    } = this.state;
-    this.props.dispatch(actions.trySignUp({ email, password, passwordConfirmation }));
+    this.state
+      >> actions.trySignUp
+      >> this.props.dispatch;
   }
 
   render() {
@@ -103,6 +100,6 @@ class Signup extends React.Component {
   }
 }
 
-export default connect(
+export default Signup >> connect(
   state => state.user
-)(Signup);
+);

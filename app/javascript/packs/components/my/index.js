@@ -10,7 +10,10 @@ class My extends React.Component {
 
   componentDidMount() {
     const { user } = this.props;
-    this.props.dispatch(fetchTrainingRecord({ token: user.state.token }));
+    const payload = { token: user.state.token };
+    obj
+      >> fetchTrainingRecord
+      >> this.props.dispatch;
   }
 
   render() {
@@ -24,6 +27,6 @@ class My extends React.Component {
   }
 }
 
-export default connect(
+export default My >> connect(
   state => ({ user: state.user, trainingRecords: state.trainingRecords }),
-)(My);
+);

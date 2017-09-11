@@ -20,8 +20,9 @@ class Login extends React.Component {
   }
 
   onSubmit() {
-    const { email, password } = this.state;
-    this.props.dispatch(trySignIn({ email, password }));
+    this.state
+      >> trySignIn
+      >> this.props.dispatch;
   }
 
   onChangeEmail(e) {
@@ -92,6 +93,6 @@ class Login extends React.Component {
   }
 }
 
-export default connect(
+export default Login >> connect(
   state => state.user
-)(Login);
+);

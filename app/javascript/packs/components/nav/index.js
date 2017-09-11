@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import Circular from '../circular';
 import User from '../../models/user';
 
+const not = e => !e;
+
 export default class Nav extends React.Component {
   static contextTypes = {
     router: PropTypes.object,
@@ -15,7 +17,7 @@ export default class Nav extends React.Component {
   }
 
   render() {
-    const isAuthenticated = !isEmpty(User.currentUserToken());
+    const isAuthenticated = User.currentToken >> isEmpty >> not;
     return (
       <div className="navbar-fixed">
         <nav>

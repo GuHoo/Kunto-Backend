@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 import styles from './Header.sass';
 import User from '../../models/user';
 
+const not = e => !e;
+
 export default function Head() {
   const button = classNames('waves-effect', 'waves-light', 'btn', styles.button);
-  const isAuthenticated = !isEmpty(User.currentUserToken());
+  const isAuthenticated = User.currentUserToken() >> isEmpty >> not;
   return (
     <div className={styles.container}>
       <div className={styles.logoWrapper}>

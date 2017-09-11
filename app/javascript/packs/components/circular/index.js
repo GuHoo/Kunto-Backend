@@ -29,6 +29,6 @@ class Circular extends React.Component {
   }
 }
 
-export default connect(
+export default Circular >> connect(
   state => state.waitting
-)(Circular);
+);
