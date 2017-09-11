@@ -8,6 +8,7 @@ export const initalState = {
   user: { state: new User().restore() },
   waitting: { state: false },
   snackbar: { state: new Snackbar() },
+  trainingRecords: { state: [] },
 };
 
 const user = createReducer({
@@ -40,10 +41,15 @@ const snackbar = createReducer({
   },
 }, initalState.snackbar);
 
+const trainingRecords = createReducer({
+
+}, initalState.trainingRecords);
+
 export default combineReducers(
   {
     user,
     snackbar,
     waitting,
+    trainingRecords,
   }
 );

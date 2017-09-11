@@ -1,63 +1,9 @@
-import { fork, take, put, call, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { push } from 'react-router-redux';
-import axios from 'axios';
 import * as actions from '../actions';
-
-const url = (path) => (
-  `${process.env.RAILS_API_SERVER}/api/${path}`
-);
-
-const signUpRequest = ({ email, password, passwordConfirmation }) => (
-  axios.post(url('/users/sign_up'), {
-    email,
-    password,
-    password_confirmation: passwordConfirmation,
-  })
-);
-
-const signInRequest = ({ email, password }) => (
-  axios.post(url('/users/sign_in'), {
-    email,
-    password,
-  })
-)
-
-function* signInSaga(action) {
-  const { payload } = action;
-  yield put(actions.fetchStart());
-  try {
-    const response = yield call(signInRequest, payload);
-    yield delay(200);
-    yield put(actions.successSignIn(response.data));
-    yield put(push('/my'));
-    yield put(actions.openSnackbar({ message: 'おかえりなさい' }));
-  } catch (_err) {
-    yield delay(200);
-    yield put(actions.failXHR({
-      message: '登録されていないメールアドレス，もしくはパスワードに入力ミスがあります'
-    }));
-  }
-  yield put(actions.fetchEnd());
-}
-
-function* signUpSaga(action) {
-  const { payload } = action;
-  yield put(actions.fetchStart());
-  try {
-    const response = yield call(signUpRequest, payload);
-    yield delay(200);
-    yield put(actions.successSignUp(response.data));
-    yield put(push('/my'));
-    yield put(actions.openSnackbar({ message: 'ようこそ，薫陶へ' }));
-  } catch (_err) {
-    yield delay(200);
-    yield put(actions.failXHR({
-      message: 'すでに登録されたメールアドレスか，パスワードに入力ミスがあります'
-    }));
-  }
-  yield put(actions.fetchEnd());
-}
+import * as userSaga from './user'
+import { trainingRecordSaga } from './trainRecord';
 
 function* errorHandlingSaga(action) {
   const { payload } = action;
@@ -67,7 +13,8 @@ function* errorHandlingSaga(action) {
 }
 
 export default function* rootSaga() {
-  yield takeEvery(`${actions.trySignUp}`, signUpSaga);
   yield takeEvery(`${actions.failXHR}`, errorHandlingSaga);
-  yield takeEvery(`${actions.trySignIn}`, signInSaga);
+  yield takeEvery(`${actions.trySignUp}`, userSaga.signUpSaga);
+  yield takeEvery(`${actions.trySignIn}`, userSaga.signInSaga);
+  yield takeEvery(`${actions.fetchTrainingRecord}`, trainingRecordSaga);
 }

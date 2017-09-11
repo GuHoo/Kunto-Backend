@@ -1124,6 +1124,12 @@ bytes@2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-2.5.0.tgz#4c9423ea2d252c270c41b2bdefeff9bb6b62c06a"
 
+c3@^0.4.11:
+  version "0.4.17"
+  resolved "https://registry.yarnpkg.com/c3/-/c3-0.4.17.tgz#718b3e489fd70fe061a4ad7ffcdad36bd409ef68"
+  dependencies:
+    d3 "~3.5.0"
+
 camelcase-css@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/camelcase-css/-/camelcase-css-1.0.1.tgz#157c4238265f5cf94a1dffde86446552cbf3f705"
@@ -1604,6 +1610,10 @@ currently-unhandled@^0.4.1:
   resolved "https://registry.yarnpkg.com/currently-unhandled/-/currently-unhandled-0.4.1.tgz#988df33feab191ef799a61369dd76c17adf957ea"
   dependencies:
     array-find-index "^1.0.1"
+
+d3@~3.5.0:
+  version "3.5.17"
+  resolved "https://registry.yarnpkg.com/d3/-/d3-3.5.17.tgz#bc46748004378b21a360c9fc7cf5231790762fb8"
 
 d@1:
   version "1.0.0"
@@ -4210,6 +4220,12 @@ rc@^1.1.7:
 react-autobind@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/react-autobind/-/react-autobind-1.0.6.tgz#936bb58edf6b89b619c50f82f0e617159fdfd4f1"
+
+react-c3js@^0.1.19:
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/react-c3js/-/react-c3js-0.1.19.tgz#6ab19778d9c6a8b78557e10fa974328af253e10a"
+  dependencies:
+    c3 "^0.4.11"
 
 react-deep-force-update@^2.0.1:
   version "2.1.1"
