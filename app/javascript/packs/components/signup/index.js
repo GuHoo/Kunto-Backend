@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -20,7 +21,8 @@ class Signup extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.state.token !== '') this.props.history.push('/my');
+    const token =_.get(this.props, ['state', 'token'], '');
+    if (token !== '') this.props.history.push('/my');
   }
 
   onChangeEmail(e) {
