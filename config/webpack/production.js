@@ -13,6 +13,14 @@ module.exports = merge(sharedConfig, {
   stats: 'normal',
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: 'production',
+      },
+    }),
+
+    new webpack.optimize.OccurrenceOrderPlugin(),
+
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       sourceMap: true,
