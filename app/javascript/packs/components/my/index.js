@@ -11,7 +11,7 @@ class My extends React.Component {
   componentDidMount() {
     const { user } = this.props;
     const payload = { token: user.state.token };
-    obj
+    payload
       >> fetchTrainingRecord
       >> this.props.dispatch;
   }

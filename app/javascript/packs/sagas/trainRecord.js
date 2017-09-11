@@ -16,10 +16,10 @@ export function* trainingRecordSaga(action) {
   yield put(actions.fetchStart());
   try {
     const response = yield call(fetchTrainingRecordRequest, payload);
-    yield delay(200);
+    yield delay(500);
     yield put(actions.successFetchTainingRecord());
   } catch (_err) {
-    yield delay(200);
+    yield delay(500);
     yield put(actions.failXHR({
       message: 'レコードの取得に失敗しました．',
     }));
