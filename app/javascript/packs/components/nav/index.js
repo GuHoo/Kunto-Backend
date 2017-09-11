@@ -1,23 +1,21 @@
 import { isEmpty } from 'lodash';
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Circular from '../circular';
 import User from '../../models/user';
 
 const not = e => !e;
+const getToken = props => _.get(props, ['state', 'token']);
 
-export default class Nav extends React.Component {
+class Nav extends React.Component {
   static contextTypes = {
     router: PropTypes.object,
   }
 
-  constructor(props, context) {
-    super(props, context);
-  }
-
   render() {
-    const isAuthenticated = User.currentToken >> isEmpty >> not;
+    const isAuthenticated = this.props >> getToken >> isEmpty >> not;
     return (
       <div className="navbar-fixed">
         <nav>
@@ -52,3 +50,7 @@ export default class Nav extends React.Component {
     );
   }
 }
+
+export default Nav >> connect(
+  state => state.user,
+);
