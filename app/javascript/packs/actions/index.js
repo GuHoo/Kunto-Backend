@@ -9,6 +9,9 @@ export const successSignIn = createAction('SUCCESS_SIGN_IN');
 export const fetchTrainingRecord = createAction('FETCH_TRAINING_RECORD');
 export const successFetchTainingRecord = createAction('SUCCESS_FETCH_TRAINING_RECORD');
 
+export const fetchTraining = createAction('FETCH_TRAINING');
+export const successFetchTaining = createAction('SUCCESS_FETCH_TRAINING');
+
 export const fetchStart = createAction('FETCH_START');
 export const fetchEnd = createAction('FETCH_END');
 

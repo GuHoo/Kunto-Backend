@@ -4,6 +4,7 @@ import { push } from 'react-router-redux';
 import * as actions from '../actions';
 import * as userSaga from './user'
 import { trainingRecordSaga } from './trainRecord';
+import { trainingSaga } from './train';
 
 function* errorHandlingSaga(action) {
   const { payload } = action;
@@ -16,5 +17,6 @@ export default function* rootSaga() {
   yield takeEvery(`${actions.failXHR}`, errorHandlingSaga);
   yield takeEvery(`${actions.trySignUp}`, userSaga.signUpSaga);
   yield takeEvery(`${actions.trySignIn}`, userSaga.signInSaga);
+  yield takeEvery(`${actions.fetchTraining}`, trainingSaga);
   yield takeEvery(`${actions.fetchTrainingRecord}`, trainingRecordSaga);
 }
