@@ -1,4 +1,4 @@
-import { get, delay } from 'lodash'
+import { get, delay, isEmpty } from 'lodash'
 import React from 'react';
 import {
   Switch,
@@ -14,19 +14,20 @@ import My from '../components/my';
 import AuthRoute from '../components/auth';
 import * as actions from '../actions'
 
-const getToken = e => _.get(e, 'token')
+const getToken = e => get(e, 'token')
 const not = e => !e;
-const waitAnimate = (func) => _.delay(func, 1000);
+const waitAnimate = (func) => delay(func, 1000);
 
 class App extends React.Component {
   componentDidMount() {
     actions.fetchStart() >> this.props.dispatch;
-    waitAnimate(() => actions.fetchEnd() >> this.props.dispatch);
+    const afterTask = () => actions.fetchEnd() >> this.props.dispatch;
+    waitAnimate << afterTask;
   }
 
   render() {
     const { state } = this.props;
-    const isAuthenticated = state >> getToken >> _.isEmpty >> not;
+    const isAuthenticated = state >> getToken >> isEmpty >> not;
     return (
       <Router>
         <Layout>
