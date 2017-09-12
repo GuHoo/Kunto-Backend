@@ -19,9 +19,9 @@ class My extends React.Component {
   render() {
     return (
       <div className="row">
-        <div className="col s1 m1" />
-        <div className="col s10 m10" />
-        <div className="col s1 m1" />
+        <div className="col s1 m1 l1" />
+        <div className="col s10 m10 l10" />
+        <div className="col s1 m1 l1" />
       </div>
     );
   }
