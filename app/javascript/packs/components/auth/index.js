@@ -1,22 +1,35 @@
 import React from 'react';
+import NProgress from 'nprogress';
 import PropTypes from 'prop-types';
 import { Redirect, Route } from 'react-router-dom';
 
-const AuthRoute = ({ component, isAuthenticated, isPrivate, to,  ...props }) => {
-  if (isAuthenticated) {
-    if (isPrivate) {
-      return <Route {...props} component={component} />;
+class AuthRoute extends React.Component {
+  componentWillMount() {
+    NProgress.start();
+  }
+
+  componentDidMount() {
+    NProgress.done();
+    NProgress.remove();
+  }
+
+  render() {
+    const { component, isAuthenticated, isPrivate, to,  ...props } = this.props;
+    if (isAuthenticated) {
+      if (isPrivate) {
+        return <Route {...props} component={component} />;
+      } else {
+        return <Redirect to={to} />
+      }
     } else {
-      return <Redirect to={to} />
-    }
-  } else {
-    if (isPrivate) {
-      return <Redirect to={to} />
-    } else {
-      return <Route {...props} component={component} />;
+      if (isPrivate) {
+        return <Redirect to={to} />
+      } else {
+        return <Route {...props} component={component} />;
+      }
     }
   }
-};
+}
 
 AuthRoute.propTypes = {
   component: PropTypes.oneOfType([

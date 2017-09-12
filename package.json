@@ -26,6 +26,7 @@
     "js-yaml": "^3.9.1",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.3",
+    "nprogress": "^0.2.0",
     "path-complete-extname": "^0.1.0",
     "postcss-loader": "^2.0.6",
     "postcss-smart-import": "^0.7.5",
