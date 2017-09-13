@@ -124,6 +124,7 @@ class MenuEditor extends React.Component {
     const { trainingSetCount, activeTraining } = this.state;
     const isActive = activeTraining >> R.where({ [training.id]: k => k });
     const getCount = o => get(o, training.id, '');
+    const klass = getCount(trainingSetCount) ? 'active' : '';
     if (isActive >> R.not) return;
     return (
       <div>
@@ -135,6 +136,7 @@ class MenuEditor extends React.Component {
             onChange={e => this.onChangeTrainingSetCount(e, training)}
           />
           <label
+            className={klass}
             htmlFor={`setcount-${training.id}`}
             style={{ fontSize: '12px' }}>セット数</label>
         </div>
@@ -146,6 +148,7 @@ class MenuEditor extends React.Component {
     const { trainingCount, activeTraining } = this.state;
     const isActive = activeTraining >> R.where({ [training.id]: k => k });
     const getCount = o => get(o, training.id, '');
+    const klass = getCount(trainingCount) ? 'active' : '';
     if (isActive >> R.not) return;
     return (
       <div>
@@ -157,6 +160,7 @@ class MenuEditor extends React.Component {
             onChange={e => this.onChangeTrainingCount(e, training)}
           />
           <label
+            className={klass}
             htmlFor={`count-${training.id}`}
             style={{ fontSize: '12px' }}>回数</label>
         </div>
