@@ -1,8 +1,8 @@
 import 'babel-polyfill';
-import App from './containers/App';
 import InjectTapEventPlugin from 'react-tap-event-plugin';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './containers/App';
 import createStore from './stores';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
@@ -27,5 +27,7 @@ const render = (Component) => {
 }
 
 document.addEventListener('DOMContentLoaded', () => render(App));
+
+document.addEventListener('turbolinks:render', () => render(App));
 
 if (module.hot) module.hot.accept('./containers/App', () => render(App));

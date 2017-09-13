@@ -11,10 +11,11 @@ import Dashboard from '../components/dashboard';
 import Login from '../components/login';
 import Signup from '../components/signup';
 import My from '../components/my';
+import MenuEditor from '../components/menu_editor';
 import AuthRoute from '../components/auth';
-import * as actions from '../actions'
+import * as actions from '../actions';
 
-const getToken = e => get(e, 'token')
+const getToken = e => get(e, 'token');
 const not = e => !e;
 const waitAnimate = (func) => delay(func, 1000);
 
@@ -53,6 +54,13 @@ class App extends React.Component {
               to="/sign_in"
               path="/my"
               component={My}
+            />
+            <AuthRoute
+              isAuthenticated={isAuthenticated}
+              isPrivate={true}
+              to="/sign_in"
+              path="/menus/new"
+              component={MenuEditor}
             />
             <Route component={Dashboard} />
           </Switch>

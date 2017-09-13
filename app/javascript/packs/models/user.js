@@ -1,18 +1,18 @@
 import _ from 'lodash';
 
-const invalidArguments = obj => {
-  const id = _.get(obj, 'id', null);
-  const email = _.get(obj, 'email', null);
-  const token = _.get(obj, 'token', null);
+const invalidArguments = args => {
+  const id = _.get(args, 'id', null);
+  const email = _.get(args, 'email', null);
+  const token = _.get(args, 'token', null);
   return _.isNil(id) || _.isNil(email) || _.isNil(token);
 };
 
 export default class User {
-  constructor(obj) {
-    if (invalidArguments(obj)) return;
-    this._id = obj.id;
-    this._email = obj.email;
-    this._token = obj.token;
+  constructor(args) {
+    if (invalidArguments(args)) return;
+    this._id = args.id;
+    this._email = args.email;
+    this._token = args.token;
     this.store();
   }
 

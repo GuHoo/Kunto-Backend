@@ -12,7 +12,7 @@ class Api::UsersController < ApiController
 
   def sign_in
     user = User.find_by(email: params[:email])
-    if user.valid_password?(params[:password])
+    if user&.valid_password?(params[:password]) || false
       render json: user
     else
       render_400

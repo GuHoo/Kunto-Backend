@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/sign_in', to: 'dashboard#index'
   get '/sign_up', to: 'dashboard#index'
   get '/my', to: 'dashboard#index'
+  get '/menus/new', to: 'dashboard#index'
 
   match '*path' => 'application#render_404', via: :all if Rails.env != 'development'
 end
