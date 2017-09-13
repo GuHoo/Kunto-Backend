@@ -5,6 +5,7 @@ import * as actions from '../actions';
 import * as userSaga from './user'
 import { trainingRecordSaga } from './trainRecord';
 import { trainingSaga } from './train';
+import { trainingMenuSaga } from './trainMenu';
 
 function* errorHandlingSaga(action) {
   const { payload } = action;
@@ -19,4 +20,5 @@ export default function* rootSaga() {
   yield takeEvery(`${actions.trySignIn}`, userSaga.signInSaga);
   yield takeEvery(`${actions.fetchTraining}`, trainingSaga);
   yield takeEvery(`${actions.fetchTrainingRecord}`, trainingRecordSaga);
+  yield takeEvery(`${actions.tryPostTrainingMenuAction}`, trainingMenuSaga);
 }

@@ -12,6 +12,9 @@ export const successFetchTainingRecord = createAction('SUCCESS_FETCH_TRAINING_RE
 export const fetchTraining = createAction('FETCH_TRAINING');
 export const successFetchTaining = createAction('SUCCESS_FETCH_TRAINING');
 
+export const tryPostTrainingMenuAction = createAction('TRY_POST_TRAINING_MENU_ACTION');
+export const successPostTrainingMenuAction = createAction('SUCCESS_POST_TRAINING_MENU_ACTION');
+
 export const fetchStart = createAction('FETCH_START');
 export const fetchEnd = createAction('FETCH_END');
 
