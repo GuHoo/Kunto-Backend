@@ -27,6 +27,7 @@ class TrainRecoder extends React.Component {
   }
 
   onSubmit() {
+    this.setState({ count: 0 });
     const payload = {
       token: this.props.user.token,
       train_id: this.props.match.params.id,
