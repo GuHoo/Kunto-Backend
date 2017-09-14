@@ -18,10 +18,10 @@ class Snackbar extends Component {
   componentWillReceiveProps(nextProps) {
     const { state } = nextProps;
     if (state.isOpen) {
-      this.setState({ anime: 'fadeIn', isOpen: true });
+      this.setState({ anime: 'fadeInUp', isOpen: true });
       setTimeout(() => this.setState({ anime: '' }), 500);
     } else {
-      this.setState({ anime: 'fadeOut' });
+      this.setState({ anime: 'fadeOutDown' });
       setTimeout(() => this.setState({ anime: '', isOpen: false }), 500);
     }
   }
