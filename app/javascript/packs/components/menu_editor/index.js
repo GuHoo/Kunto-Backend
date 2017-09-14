@@ -1,15 +1,21 @@
-import { get, map } from 'lodash';
+import { get, map, delay, defer } from 'lodash';
 import R from 'ramda';
 import React from 'react';
+import PropTypes from 'prop-types';
 import autoBind from 'react-autobind';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { fetchTraining, tryPostTrainingMenuAction } from '../../actions';
+import { push } from 'react-router-redux';
+import { fetchTraining, tryPostTrainingMenuAction, fetchUserTrainingMenu } from '../../actions';
 
 const weekDays = [ '月', '火', '水', '木', '金', '土', '日', ];
 const key = (type, id) => `training-${type}_${id}`;
 
 class MenuEditor extends React.Component {
+  static contextTypes = {
+    router: PropTypes.object,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +31,18 @@ class MenuEditor extends React.Component {
   }
 
   componentDidMount() {
-    fetchTraining() >> this.props.dispatch;
+    const payload = { token: get(this.props, ['user', 'state', 'token'], '') };
+    defer(() => payload >> fetchUserTrainingMenu >> this.props.dispatch);
+    delay(() => fetchTraining() >> this.props.dispatch, 300);
+    if (this.props.userTrainingMenu.state !== null) {
+      this.context.router.history.push('/my');
+    }
+  }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.userTrainingMenu.state !== null) {
+      this.context.router.history.push('/my');
+    }
   }
 
   onSubmit() {
@@ -204,8 +221,8 @@ class MenuEditor extends React.Component {
   }
 
   renderWelcomeBox() {
-    _.delay(() => this.setState({ welcomeBoxClassName: 'fadeOut' }), 4800);
-    _.delay(() => this.setState({ fade: 1 }), 5000);
+    delay(() => this.setState({ welcomeBoxClassName: 'fadeOut' }), 4800);
+    delay(() => this.setState({ fade: 1 }), 5000);
     const klass = classNames('animated', this.state.welcomeBoxClassName);
     return (
       <div
@@ -216,7 +233,9 @@ class MenuEditor extends React.Component {
           <p style={{ fontSize: '2em', 'marginBottom': '60px' }}
           >ようこそ薫陶へ</p>
           <p style={{ fontSize: '1.4em' }}>まずは，</p>
-          <p style={{ fontSize: '1.4em', marginTop: '20px' }}>自分だけのトレーニングメニューを</p>
+          <p style={{ fontSize: '1.4em', marginTop: '20px' }}>
+            自分だけのトレーニングメニューを
+          </p>
           <p style={{ fontSize: '1.4em', marginTop: '20px' }}>作成しよう</p>
         </div>
       </div>
@@ -258,5 +277,9 @@ class MenuEditor extends React.Component {
 }
 
 export default MenuEditor >> connect(
-  state => ({ state: state.training.state, user: state.user}),
+  state => ({
+    state: state.training.state,
+    user: state.user,
+    userTrainingMenu: state.userTrainingMenu
+  }),
 );

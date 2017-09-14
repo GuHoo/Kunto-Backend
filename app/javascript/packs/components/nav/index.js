@@ -28,9 +28,9 @@ class Nav extends React.Component {
                       (() => {
                         if (isAuthenticated) {
                           return (
-                            <Link to="#">
+                            <Link to="/trains/new">
                               <span className="fa fa-line-chart" />
-                              トレーニングを記録する
+                              記録する
                             </Link>
                           );
                         }

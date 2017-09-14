@@ -15,6 +15,12 @@ export default class Train {
     this._detail = args.detail;
   }
 
+  static findById(id, collection) {
+    const scope = t => t.id === id;
+    if (collection == null) return c => c.find(scope);
+    return collection.find(scope);
+  }
+
   get id() {
     return this._id;
   }
