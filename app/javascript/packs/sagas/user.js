@@ -30,7 +30,6 @@ export function* signInSaga(action) {
     const response = yield call(signInRequest, payload);
     yield delay(200);
     yield put(actions.successSignIn(response.data));
-    yield put(push('/my'));
     yield put(actions.openSnackbar({ message: 'おかえりなさい' }));
     yield delay(10000);
     yield put(actions.closeSnackbar());
@@ -50,7 +49,6 @@ export function* signUpSaga(action) {
     const response = yield call(signUpRequest, payload);
     yield delay(200);
     yield put(actions.successSignUp(response.data));
-    yield put(push('/my'));
     yield put(actions.openSnackbar({ message: 'ようこそ，薫陶へ' }));
     yield delay(10000);
     yield put(actions.closeSnackbar());

@@ -44,7 +44,7 @@ class App extends React.Component {
             <AuthRoute
               isAuthenticated={isAuthenticated}
               isPrivate={false}
-              to="/my"
+              to="/menus/new"
               path="/sign_up"
               component={Signup}
             />

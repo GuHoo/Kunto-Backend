@@ -13,6 +13,8 @@ class MenuEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      fade: 0,
+      welcomeBoxClassName: 'fadeIn',
       weekDaysOfTraining: {},
       activeTraining: {},
       trainingCount: {},
@@ -27,12 +29,15 @@ class MenuEditor extends React.Component {
   }
 
   onSubmit() {
-    const trains = map(this.state.activeTraining, (_, k) => ({
-      train_id: k,
-      count: this.state.trainingCount[k],
-      set_count: this.state.trainingSetCount[k],
-      train_week_day: this.state.weekDaysOfTraining[k]
-    }));
+    const trains = map(this.state.activeTraining, (isActive, k) => {
+      if (isActive >> R.not) return null;
+      return {
+        train_id: k,
+        count: this.state.trainingCount[k],
+        set_count: this.state.trainingSetCount[k],
+        train_week_day: this.state.weekDaysOfTraining[k]
+      }
+    }).filter(k => k);
     const payload = {
       token: this.props.user.state.token,
       menu: {
@@ -198,11 +203,32 @@ class MenuEditor extends React.Component {
     );
   }
 
+  renderWelcomeBox() {
+    _.delay(() => this.setState({ welcomeBoxClassName: 'fadeOut' }), 4800);
+    _.delay(() => this.setState({ fade: 1 }), 5000);
+    const klass = classNames('animated', this.state.welcomeBoxClassName);
+    return (
+      <div
+        className={klass}
+        style={{ width: '100%', height: '100%', backgroundColor: 'white' }}>
+        <div style={{ height: '20%' }} />
+        <div style={{ height: '80%', textAlign: 'center' }}>
+          <p style={{ fontSize: '2em', 'marginBottom': '60px' }}
+          >ようこそ薫陶へ</p>
+          <p style={{ fontSize: '1.4em' }}>まずは，</p>
+          <p style={{ fontSize: '1.4em', marginTop: '20px' }}>自分だけのトレーニングメニューを</p>
+          <p style={{ fontSize: '1.4em', marginTop: '20px' }}>作成しよう</p>
+        </div>
+      </div>
+    );
+  }
+
   render() {
+    if (this.state.fade === 0) return this.renderWelcomeBox();
     const disabled = this.props.state >> R.isEmpty;
     const button = classNames('waves-effect', 'waves-light', 'btn', disabled ? 'disabled' : '');
     return (
-      <div className="container">
+      <div className="container animated fadeIn">
         <div className="row">
           <div className="row s1 m1 l1" />
           <div className="row s10 m10 l10" style={{ margin: '0 10px' }}>
