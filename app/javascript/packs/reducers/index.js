@@ -56,7 +56,7 @@ const trainingRecords = createReducer({
       .map(tr => new TrainRecord(tr))
       .filter(tr => tr);
     return { state: trainingRecordList };
-  }
+  },
 }, initalState.trainingRecords);
 
 const training = createReducer({

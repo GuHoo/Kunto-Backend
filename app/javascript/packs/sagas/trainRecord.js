@@ -12,6 +12,31 @@ const fetchTrainingRecordRequest = ({ token }) => (
   axios.get(url(`train_records?token=${token}`))
 );
 
+const postTrainigRecordRequest = (payload) => (
+  axios.post(url('train_records'), payload)
+)
+
+export function* postTrainigRecordSaga(action) {
+  const { payload } = action;
+  yield put(actions.fetchStart());
+  try {
+    const response = yield call(postTrainigRecordRequest, payload);
+    yield delay(200);
+    yield put(actions.successTryPostTrainingRecord());
+  } catch (_err) {
+    yield put(actions.failXHR({
+      message: 'レコードの記録に失敗しました',
+    }));
+  }
+  yield put(actions.fetchEnd());
+};
+
+export function* callbackSuccessPostTrainingRecord() {
+  yield put(actions.openSnackbar({ message: '記録しました' }));
+  yield delay(5000);
+  yield put(actions.closeSnackbar());
+};
+
 export function* trainingRecordSaga(action) {
   const { payload } = action;
   yield put(actions.fetchStart());
@@ -26,4 +51,4 @@ export function* trainingRecordSaga(action) {
     }));
   }
   yield put(actions.fetchEnd());
-}
+};
