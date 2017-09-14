@@ -22,6 +22,10 @@ const user = createReducer({
     const user = new User(payload);
     return { state: user };
   },
+  [actions.refreshUser]: (_1, payload) => {
+    const user = new User(payload).restore();
+    return user;
+  }
 }, initalState.user);
 
 const waitting = createReducer({

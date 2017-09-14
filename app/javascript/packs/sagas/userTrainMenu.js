@@ -22,14 +22,16 @@ export function* userTrainMenuSaga(action) {
     location.href = `${location.origin}/my`;
   } catch (err) {
     const status = _.get(err, ['response', 'status'], -1);
-    yield delay(300);
     switch (status) {
       case 400:
         // TODO: should use react-router
         location.href = `${location.origin}/menus/new`;
         break;
       case 401:
-        location.href = `${location.origin}/users/sign_in`;
+        localStorage.clear();
+        yield put(actions.refreshUser());
+        yield delay(500);
+        location.href = `${location.origin}/sign_in`;
         break;
       default:
         yield put(actions.failXHR({

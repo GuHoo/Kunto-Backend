@@ -13,6 +13,7 @@ import Signup from '../components/signup';
 import My from '../components/my';
 import MenuEditor from '../components/menu_editor';
 import AuthRoute from '../components/auth';
+import NotFound from '../components/404';
 import * as actions from '../actions';
 
 const getToken = e => get(e, 'token');
@@ -34,6 +35,8 @@ class App extends React.Component {
         <Layout>
           <Switch>
             <Route exact path="/" component={Dashboard} />
+            <Route path="/index" component={Dashboard} />
+            <Route path="/dashboard" component={Dashboard} />
             <AuthRoute
               isAuthenticated={isAuthenticated}
               isPrivate={false}

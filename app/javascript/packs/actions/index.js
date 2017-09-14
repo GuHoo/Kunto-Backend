@@ -5,6 +5,7 @@ export const successSignUp = createAction('SUCCESS_SIGN_UP');
 
 export const trySignIn = createAction('TRY_SIGN_IN');
 export const successSignIn = createAction('SUCCESS_SIGN_IN');
+export const refreshUser = createAction('REFRESH_USER');
 
 export const fetchTrainingRecord = createAction('FETCH_TRAINING_RECORD');
 export const successFetchTainingRecord = createAction('SUCCESS_FETCH_TRAINING_RECORD');
