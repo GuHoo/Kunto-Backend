@@ -4,6 +4,8 @@ import * as actions from '../actions'
 import User from '../models/user';
 import Train from '../models/train';
 import Snackbar from '../models/snackbar';
+import TrainRecord from '../models/trainRecord';
+import UserTrainMenu from '../models/userTrainMenu';
 
 export const initalState = {
   user: { state: new User().restore() },
@@ -11,6 +13,7 @@ export const initalState = {
   snackbar: { state: new Snackbar() },
   trainingRecords: { state: [] },
   training: { state: [] },
+  userTrainingMenu: { state: null },
 };
 
 const user = createReducer({
@@ -48,7 +51,12 @@ const snackbar = createReducer({
 }, initalState.snackbar);
 
 const trainingRecords = createReducer({
-
+  [actions.successFetchTainingRecord]: (_1, payload) => {
+    const trainingRecordList = payload
+      .map(tr => new TrainRecord(tr))
+      .filter(tr => tr);
+    return { state: trainingRecordList };
+  },
 }, initalState.trainingRecords);
 
 const training = createReducer({
@@ -60,6 +68,13 @@ const training = createReducer({
   },
 }, initalState.training)
 
+const userTrainingMenu = createReducer({
+  [actions.successFetchUserTrainingMenu]: (_1, payload) => {
+    const utm = new UserTrainMenu(payload);
+    return { state: utm };
+  },
+}, initalState.userTrainingMenu);
+
 export default combineReducers(
   {
     user,
@@ -67,5 +82,6 @@ export default combineReducers(
     waitting,
     trainingRecords,
     training,
+    userTrainingMenu,
   }
 );

@@ -18,6 +18,8 @@ export function* trainingMenuSaga(action) {
     const response = yield call(postTrainingMenuRequest, payload);
     yield delay(500);
     yield put(actions.successPostTrainingMenuAction(response.data));
+    // TODO: should use react-router
+    location.href = `${location.origin}/my`;
   } catch (_err) {
     yield delay(500);
     yield put(actions.failXHR({

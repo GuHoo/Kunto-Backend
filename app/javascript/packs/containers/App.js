@@ -14,6 +14,8 @@ import My from '../components/my';
 import MenuEditor from '../components/menu_editor';
 import AuthRoute from '../components/auth';
 import NotFound from '../components/404';
+import TrainSelector from '../components/train_selector';
+import TrainRecoder from '../components/train_recorder';
 import * as actions from '../actions';
 
 const getToken = e => get(e, 'token');
@@ -64,6 +66,20 @@ class App extends React.Component {
               to="/sign_in"
               path="/menus/new"
               component={MenuEditor}
+            />
+            <AuthRoute
+              isAuthenticated={isAuthenticated}
+              isPrivate={true}
+              to="/sign_in"
+              path="/trains/new"
+              component={TrainSelector}
+            />
+            <AuthRoute
+              isAuthenticated={isAuthenticated}
+              isPrivate={true}
+              to="/sign_in"
+              path="/trains/:id"
+              component={TrainRecoder}
             />
             <Route component={Dashboard} />
           </Switch>
