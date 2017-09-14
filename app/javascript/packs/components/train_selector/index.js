@@ -30,6 +30,7 @@ class TrainSelector extends React.Component {
       <li { ...props } key={key('list', t.id)}>
         <span style={{ display: 'inline-block',  marginTop: '8px' }}>{t.name}</span>
         <Link
+          to={`/trains/${t.id}`}
           className="waves-effect waves-light btn"
           style={{ float: 'right', color: 'white' }}>
           開始
