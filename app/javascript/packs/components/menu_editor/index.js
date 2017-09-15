@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { fetchTraining, tryPostTrainingMenuAction, fetchUserTrainingMenu } from '../../actions';
 import PartsList from './tag';
+import TrainingLabel from './training_label';
 
 const weekDays = ['日', '月', '火', '水', '木', '金', '土'];
 const key = (type, id) => `training-${type}_${id}`;
@@ -109,17 +110,7 @@ class MenuEditor extends React.Component {
           checked={checked}
           onChange={(e) => this.onChangeTrainingState(e, training, checked)}
         />
-        <label
-          style={{
-            fontSize: '1.2rem',
-            color: 'black',
-            fontWeight: '900',
-            paddingLeft: '25px',
-            textShadow: '1px 1px 1px #999',
-          }}
-          htmlFor={key('check', training.id)}>
-          {training.name}
-        </label>
+        <TrainingLabel htmlFor={key('check', training.id)} name={training.name} />
         <PartsList training={training} />
       </div>
     );
