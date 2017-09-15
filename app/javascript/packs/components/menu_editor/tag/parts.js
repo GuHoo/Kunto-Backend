@@ -13,7 +13,7 @@ const Tag = ({ trainingId, parts }) => (
   </span>
 );
 
-Tag.PropTypes = {
+Tag.propTypes = {
   trainingId: PropTypes.number.isRequired,
   parts: PropTypes.object.isRequired,
 };

@@ -15,7 +15,7 @@ const TagList = ({ training }) => {
   return <div>{list}</div>;
 };
 
-TagList.PropTypes = {
+TagList.propTypes = {
   training: PropTypes.object.isRequired,
 };
 
