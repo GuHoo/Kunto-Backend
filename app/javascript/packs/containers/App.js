@@ -81,7 +81,7 @@ class App extends React.Component {
               path="/trains/:id"
               component={TrainRecoder}
             />
-            <Route component={Dashboard} />
+            <Route component={NotFound} />
           </Switch>
         </Layout>
       </Router>

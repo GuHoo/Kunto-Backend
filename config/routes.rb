@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   get '/trains/new', to: 'dashboard#index'
   get '/trains/:id', to: 'dashboard#index'
 
-  match '*path' => 'application#render_404', via: :all if Rails.env != 'development'
+  match '*path' => 'dashboard#index', via: :all if Rails.env != 'development'
 end
