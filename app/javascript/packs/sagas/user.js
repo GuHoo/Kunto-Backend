@@ -1,4 +1,4 @@
-import { put, call } from 'redux-saga/effects';
+import { put, call, takeEvery } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { push } from 'react-router-redux';
 import axios from 'axios';
@@ -59,4 +59,9 @@ export function* signUpSaga(action) {
     }));
   }
   yield put(actions.fetchEnd());
+}
+
+export function* userRootSaga(action) {
+  yield takeEvery(`${actions.trySignUp}`, signUpSaga);
+  yield takeEvery(`${actions.trySignIn}`, signInSaga);
 }

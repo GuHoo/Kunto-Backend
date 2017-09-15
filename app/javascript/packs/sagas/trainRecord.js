@@ -1,4 +1,4 @@
-import { put, call } from 'redux-saga/effects';
+import { put, call, takeEvery } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { push } from 'react-router-redux';
 import axios from 'axios';
@@ -52,3 +52,9 @@ export function* trainingRecordSaga(action) {
   }
   yield put(actions.fetchEnd());
 };
+
+export function* trainingRecordRootSaga() {
+  yield takeEvery(`${actions.fetchTrainingRecord}`, trainingRecordSaga);
+  yield takeEvery(`${actions.tryPostTrainingRecord}`, postTrainigRecordSaga);
+  yield takeEvery(`${actions.successTryPostTrainingRecord}`, callbackSuccessPostTrainingRecord);
+}
