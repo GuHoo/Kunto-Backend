@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { fetchTraining, tryPostTrainingMenuAction, fetchUserTrainingMenu } from '../../actions';
 
-const weekDays = [ '月', '火', '水', '木', '金', '土', '日', ];
+const weekDays = ['日', '月', '火', '水', '木', '金', '土'];
 const key = (type, id) => `training-${type}_${id}`;
 
 class MenuEditor extends React.Component {
