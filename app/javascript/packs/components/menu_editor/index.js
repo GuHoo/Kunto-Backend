@@ -10,9 +10,11 @@ import { fetchTraining, tryPostTrainingMenuAction, fetchUserTrainingMenu } from 
 import PartsList from './tag';
 import TrainingLabel from './training_label';
 import TrainingCheckbox from './training_checkbox';
+import WeekdaySelector from './weekday_select';
 
 const weekDays = ['日', '月', '火', '水', '木', '金', '土'];
 const key = (type, id) => `training-${type}_${id}`;
+const fadeState = [ 'WHITE_OUT', 'WELCOME_FADE', 'RENDER' ];
 
 class MenuEditor extends React.Component {
   static contextTypes = {
@@ -22,7 +24,7 @@ class MenuEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fade: -1,
+      fade: fadeState[0],
       welcomeBoxClassName: 'fadeIn',
       weekDaysOfTraining: {},
       activeTraining: {},
@@ -46,7 +48,7 @@ class MenuEditor extends React.Component {
     if (nextProps.userTrainingMenu.state !== null) {
       this.context.router.history.push('/my');
     } else {
-      if (this.state.fade === -1) this.setState({ fade: 0 });
+      if (this.state.fade === fadeState[0]) this.setState({ fade: fadeState[1] });
     }
   }
 
@@ -114,39 +116,23 @@ class MenuEditor extends React.Component {
   }
 
   renderWeekDayOfTrainingSelector(training) {
-    const tryGetWeekDay = (o, id) => get(o, id, -1);
-    const { weekDaysOfTraining } = this.state;
     const { activeTraining } = this.state;
     const isActive = activeTraining >> R.where({ [training.id]: k => k });
     if (isActive >> R.not) return;
+    const tryGetWeekDay = (o, id) => get(o, id, -1);
+    const onChange = e => this.onChangeWeekDayOfTraining(e, training);
+    const currentValue = tryGetWeekDay(this.state.weekDaysOfTraining, training.id);
     return (
-      <div>
-        <label>曜日</label>
-        <select
-          style={{ width: '80%', padding: '0' }}
-          value={tryGetWeekDay(weekDaysOfTraining, training.id)}
-          className="browser-default"
-          onChange={e => this.onChangeWeekDayOfTraining(e, training)}
-        >
-          <option value="-1" disabled selected>-</option>
-          {
-            7 >> R.times(i => (
-              <option key={key('wd', i)} value={i}>
-                {weekDays[i]}
-              </option>
-            ))
-          }
-        </select>
-      </div>
+      <WeekdaySelector currentValue={currentValue} onChange={onChange} />
     )
   }
 
   renderInputBoxOfTrainingSetCount(training) {
     const { trainingSetCount, activeTraining } = this.state;
     const isActive = activeTraining >> R.where({ [training.id]: k => k });
+    if (isActive >> R.not) return;
     const getCount = o => get(o, training.id, '');
     const klass = getCount(trainingSetCount) ? 'active' : '';
-    if (isActive >> R.not) return;
     return (
       <div className="input-field">
         <input
@@ -166,9 +152,9 @@ class MenuEditor extends React.Component {
   renderInputBoxOfTrainingCount(training) {
     const { trainingCount, activeTraining } = this.state;
     const isActive = activeTraining >> R.where({ [training.id]: k => k });
+    if (isActive >> R.not) return;
     const getCount = o => get(o, training.id, '');
     const klass = getCount(trainingCount) ? 'active' : '';
-    if (isActive >> R.not) return;
     return (
       <div className="input-field">
         <input
@@ -217,7 +203,7 @@ class MenuEditor extends React.Component {
 
   renderWelcomeBox() {
     delay(() => this.setState({ welcomeBoxClassName: 'fadeOut' }), 4800);
-    delay(() => this.setState({ fade: 1 }), 5000);
+    delay(() => this.setState({ fade: fadeState[2] }), 5000);
     const klass = classNames('animated', this.state.welcomeBoxClassName);
     return (
       <div
@@ -238,8 +224,8 @@ class MenuEditor extends React.Component {
   }
 
   render() {
-    if (this.state.fade === -1) return null;
-    if (this.state.fade === 0) return this.renderWelcomeBox();
+    if (this.state.fade === fadeState[0]) return null;
+    if (this.state.fade === fadeState[1]) return this.renderWelcomeBox();
     const disabled = this.props.state >> R.isEmpty;
     const button = classNames('waves-effect', 'waves-light', 'btn', disabled ? 'disabled' : '');
     return (
