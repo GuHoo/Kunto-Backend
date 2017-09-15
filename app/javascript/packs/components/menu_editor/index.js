@@ -97,6 +97,20 @@ class MenuEditor extends React.Component {
   renderCheckBoxOfTraining(training) {
     const { activeTraining } = this.state;
     const checked = get(activeTraining, training.id, false);
+    const partsDOM = training.parts.map(p => (
+      <span
+        key={key('parts', `${training.id}-${p.id}`)}
+        style={{
+          color: '#414141',
+          marginLeft: '4px',
+          fontSize: '0.3rem',
+          backgroundColor: '#d4d4d4',
+          border: 'solid 1px black',
+          borderRadius: '4px',
+          padding: '1px 3px',
+        }}
+      >{p.name}</span>
+    ));
     return (
       <div>
         <input
@@ -107,9 +121,13 @@ class MenuEditor extends React.Component {
           onChange={(e) => this.onChangeTrainingState(e, training, checked)}
         />
         <label
+          style={{ fontSize: '0.8rem', fontWeight: '900' }}
           htmlFor={key('check', training.id)}>
           {training.name}
         </label>
+        <div>
+          {partsDOM}
+        </div>
       </div>
     );
   }
