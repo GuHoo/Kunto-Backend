@@ -110,7 +110,13 @@ class MenuEditor extends React.Component {
           onChange={(e) => this.onChangeTrainingState(e, training, checked)}
         />
         <label
-          style={{ fontSize: '0.8rem', fontWeight: '900' }}
+          style={{
+            fontSize: '1.2rem',
+            color: 'black',
+            fontWeight: '900',
+            paddingLeft: '25px',
+            textShadow: '1px 1px 1px #999',
+          }}
           htmlFor={key('check', training.id)}>
           {training.name}
         </label>
@@ -199,17 +205,17 @@ class MenuEditor extends React.Component {
     };
     const collection = this.props.state.map(training => (
       <li {...props} key={key('list', training.id)} >
-        <div style={{ display: 'inline-block', width: '50%', marginTop: '30px' }}>
+        <div style={{ display: 'inline-block', width: '45%', marginTop: '30px' }}>
           {this.renderCheckBoxOfTraining(training)}
         </div>
-        <div style={{ display: 'inline-block', width: '15%', verticalAlign: 'top' }}>
+        <div style={{ display: 'inline-block', width: '22%', verticalAlign: 'top' }}>
           {this.renderWeekDayOfTrainingSelector(training)}
         </div>
-        <div style={{ display: 'inline-block', width: '17%', verticalAlign: 'top' }}>
+        <div style={{ display: 'inline-block', width: '16%', verticalAlign: 'top' }}>
           {this.renderInputBoxOfTrainingSetCount(training)}
         </div>
         <div style={{ display: 'inline-block', width: '1%' }} />
-        <div style={{ display: 'inline-block', width: '17%', verticalAlign: 'top' }}>
+        <div style={{ display: 'inline-block', width: '16%', verticalAlign: 'top' }}>
           {this.renderInputBoxOfTrainingCount(training)}
         </div>
       </li>
