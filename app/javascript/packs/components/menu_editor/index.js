@@ -9,6 +9,7 @@ import { push } from 'react-router-redux';
 import { fetchTraining, tryPostTrainingMenuAction, fetchUserTrainingMenu } from '../../actions';
 import PartsList from './tag';
 import TrainingLabel from './training_label';
+import TrainingCheckbox from './training_checkbox';
 
 const weekDays = ['日', '月', '火', '水', '木', '金', '土'];
 const key = (type, id) => `training-${type}_${id}`;
@@ -101,16 +102,12 @@ class MenuEditor extends React.Component {
   renderCheckBoxOfTraining(training) {
     const { activeTraining } = this.state;
     const checked = get(activeTraining, training.id, false);
+    const onChange = e => this.onChangeTrainingState(e, training, checked);
+    const id = key('check', training.id);
     return (
       <div>
-        <input
-          id={key('check', training.id)}
-          type="checkbox"
-          className="filled-in"
-          checked={checked}
-          onChange={(e) => this.onChangeTrainingState(e, training, checked)}
-        />
-        <TrainingLabel htmlFor={key('check', training.id)} name={training.name} />
+        <TrainingCheckbox id={id} checked={checked} onChange={onChange} />
+        <TrainingLabel htmlFor={id} name={training.name} />
         <PartsList training={training} />
       </div>
     );
