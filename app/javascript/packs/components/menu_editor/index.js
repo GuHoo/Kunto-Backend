@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { fetchTraining, tryPostTrainingMenuAction, fetchUserTrainingMenu } from '../../actions';
+import PartsList from './tag';
 
 const weekDays = ['日', '月', '火', '水', '木', '金', '土'];
 const key = (type, id) => `training-${type}_${id}`;
@@ -19,7 +20,7 @@ class MenuEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fade: 0,
+      fade: -1,
       welcomeBoxClassName: 'fadeIn',
       weekDaysOfTraining: {},
       activeTraining: {},
@@ -42,6 +43,8 @@ class MenuEditor extends React.Component {
   componentWillUpdate(nextProps) {
     if (nextProps.userTrainingMenu.state !== null) {
       this.context.router.history.push('/my');
+    } else {
+      if (this.state.fade === -1) this.setState({ fade: 0 });
     }
   }
 
@@ -97,20 +100,6 @@ class MenuEditor extends React.Component {
   renderCheckBoxOfTraining(training) {
     const { activeTraining } = this.state;
     const checked = get(activeTraining, training.id, false);
-    const partsDOM = training.parts.map(p => (
-      <span
-        key={key('parts', `${training.id}-${p.id}`)}
-        style={{
-          color: '#414141',
-          marginLeft: '4px',
-          fontSize: '0.3rem',
-          backgroundColor: '#d4d4d4',
-          border: 'solid 1px black',
-          borderRadius: '4px',
-          padding: '1px 3px',
-        }}
-      >{p.name}</span>
-    ));
     return (
       <div>
         <input
@@ -125,9 +114,7 @@ class MenuEditor extends React.Component {
           htmlFor={key('check', training.id)}>
           {training.name}
         </label>
-        <div>
-          {partsDOM}
-        </div>
+        <PartsList training={training} />
       </div>
     );
   }
@@ -145,7 +132,7 @@ class MenuEditor extends React.Component {
           style={{ width: '80%', padding: '0' }}
           value={tryGetWeekDay(weekDaysOfTraining, training.id)}
           className="browser-default"
-          onChange={(e) => this.onChangeWeekDayOfTraining(e, training)}
+          onChange={e => this.onChangeWeekDayOfTraining(e, training)}
         >
           <option value="-1" disabled selected>-</option>
           {
@@ -167,19 +154,17 @@ class MenuEditor extends React.Component {
     const klass = getCount(trainingSetCount) ? 'active' : '';
     if (isActive >> R.not) return;
     return (
-      <div>
-        <div className="input-field">
-          <input
-            id={`setcount-${training.id}`}
-            type="number"
-            value={getCount(trainingSetCount)}
-            onChange={e => this.onChangeTrainingSetCount(e, training)}
-          />
-          <label
-            className={klass}
-            htmlFor={`setcount-${training.id}`}
-            style={{ fontSize: '12px' }}>セット数</label>
-        </div>
+      <div className="input-field">
+        <input
+          id={`setcount-${training.id}`}
+          type="number"
+          value={getCount(trainingSetCount)}
+          onChange={e => this.onChangeTrainingSetCount(e, training)}
+        />
+        <label
+          className={klass}
+          htmlFor={`setcount-${training.id}`}
+          style={{ fontSize: '12px' }}>セット数</label>
       </div>
     )
   }
@@ -191,19 +176,17 @@ class MenuEditor extends React.Component {
     const klass = getCount(trainingCount) ? 'active' : '';
     if (isActive >> R.not) return;
     return (
-      <div>
-        <div className="input-field">
-          <input
-            id={`count-${training.id}`}
-            type="number"
-            value={getCount(trainingCount)}
-            onChange={e => this.onChangeTrainingCount(e, training)}
-          />
-          <label
-            className={klass}
-            htmlFor={`count-${training.id}`}
-            style={{ fontSize: '12px' }}>回数</label>
-        </div>
+      <div className="input-field">
+        <input
+          id={`count-${training.id}`}
+          type="number"
+          value={getCount(trainingCount)}
+          onChange={e => this.onChangeTrainingCount(e, training)}
+        />
+        <label
+          className={klass}
+          htmlFor={`count-${training.id}`}
+          style={{ fontSize: '12px' }}>回数</label>
       </div>
     )
   }
@@ -219,14 +202,14 @@ class MenuEditor extends React.Component {
         <div style={{ display: 'inline-block', width: '50%', marginTop: '30px' }}>
           {this.renderCheckBoxOfTraining(training)}
         </div>
-        <div style={{ display: 'inline-block', width: '15%' }}>
+        <div style={{ display: 'inline-block', width: '15%', verticalAlign: 'top' }}>
           {this.renderWeekDayOfTrainingSelector(training)}
         </div>
-        <div style={{ display: 'inline-block', width: '17%' }}>
+        <div style={{ display: 'inline-block', width: '17%', verticalAlign: 'top' }}>
           {this.renderInputBoxOfTrainingSetCount(training)}
         </div>
         <div style={{ display: 'inline-block', width: '1%' }} />
-        <div style={{ display: 'inline-block', width: '17%' }}>
+        <div style={{ display: 'inline-block', width: '17%', verticalAlign: 'top' }}>
           {this.renderInputBoxOfTrainingCount(training)}
         </div>
       </li>
@@ -261,6 +244,7 @@ class MenuEditor extends React.Component {
   }
 
   render() {
+    if (this.state.fade === -1) return null;
     if (this.state.fade === 0) return this.renderWelcomeBox();
     const disabled = this.props.state >> R.isEmpty;
     const button = classNames('waves-effect', 'waves-light', 'btn', disabled ? 'disabled' : '');

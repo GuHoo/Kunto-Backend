@@ -1,4 +1,5 @@
 import { takeEvery, fork, put } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import * as actions from '../actions';
 import * as userSaga from './user';
 import { trainingRecordSaga, postTrainigRecordSaga, callbackSuccessPostTrainingRecord } from './trainRecord';
