@@ -4,6 +4,7 @@ import { delay } from 'redux-saga';
 import { push } from 'react-router-redux';
 import axios from 'axios';
 import * as actions from '../actions';
+import history from '../lib/history';
 
 const url = (path) => (
   `${process.env.RAILS_API_SERVER}/api/${path}`
@@ -24,14 +25,17 @@ export function* userTrainMenuSaga(action) {
     switch (status) {
       case 400:
         // TODO: should use react-router
-        if (location.pathname !== '/menus/new') location.href = `${location.origin}/menus/new`;
+        if (location.pathname !== '/menus/new') {
+          yield call(history.push, '/menus/new');
+        }
         break;
       case 401:
         localStorage.clear();
         yield put(actions.refreshUser());
         yield delay(500);
-        // TODO: should use react-router
-        if (location.pathname !== '/sign_in') location.href = `${location.origin}/sign_in`;
+        if (location.pathname !== '/sign_in') {
+          yield call(history.push, '/sign_in');
+        }
         break;
       default:
         yield put(actions.failXHR({

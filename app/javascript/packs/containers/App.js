@@ -1,10 +1,6 @@
 import { get, delay, isEmpty } from 'lodash'
 import React from 'react';
-import {
-  Switch,
-  BrowserRouter as Router,
-  Route,
-} from 'react-router-dom';
+import { Switch, Router, Route, } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Layout from './Layout';
 import Dashboard from '../components/dashboard';
@@ -17,6 +13,7 @@ import NotFound from '../components/404';
 import TrainSelector from '../components/train_selector';
 import TrainRecoder from '../components/train_recorder';
 import * as actions from '../actions';
+import history from '../lib/history';
 
 const getToken = e => get(e, 'token');
 const not = e => !e;
@@ -33,7 +30,7 @@ class App extends React.Component {
     const { state } = this.props;
     const isAuthenticated = state >> getToken >> isEmpty >> not;
     return (
-      <Router>
+      <Router history={history}>
         <Layout>
           <Switch>
             <Route exact path="/" component={Dashboard} />

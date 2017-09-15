@@ -2,6 +2,7 @@ import { put, call } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import axios from 'axios';
 import * as actions from '../actions';
+import history from '../lib/history';
 
 const url = (path) => (
   `${process.env.RAILS_API_SERVER}/api/${path}`
@@ -18,8 +19,7 @@ export function* trainingMenuSaga(action) {
     const response = yield call(postTrainingMenuRequest, payload);
     yield delay(500);
     yield put(actions.successPostTrainingMenuAction(response.data));
-    // TODO: should use react-router
-    location.href = `${location.origin}/my`;
+    yield call(history.push, '/my')
   } catch (_err) {
     yield delay(500);
     yield put(actions.failXHR({
