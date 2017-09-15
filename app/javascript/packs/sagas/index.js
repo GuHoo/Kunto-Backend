@@ -1,4 +1,4 @@
-import { takeEvery, fork } from 'redux-saga/effects';
+import { takeEvery, fork, put } from 'redux-saga/effects';
 import * as actions from '../actions';
 import * as userSaga from './user';
 import { trainingRecordSaga, postTrainigRecordSaga, callbackSuccessPostTrainingRecord } from './trainRecord';

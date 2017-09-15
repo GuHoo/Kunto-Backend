@@ -51,7 +51,7 @@ class Api::MenuTrainsController < ApiController
       train_id: train_id,
       count: count,
       set_count: set_count,
-      train_week_day: (Date.new - 1) + train_week_day
+      train_week_day: (Date.new(2000, 1, 1) + 1) + train_week_day
     )
     MenuTrain.create!(user_id: current_user.id, train_id: train_id, menu_id: menu_id)
   end

@@ -2,9 +2,10 @@ import _ from 'lodash';
 
 const invalidArguments = args => {
   const id = _.get(args, 'id', null);
-  const email = _.get(args, 'name', null);
-  const token = _.get(args, 'detail', null);
-  return _.isNil(id) || _.isNil(email) || _.isNil(token);
+  const name = _.get(args, 'name', null);
+  const detail = _.get(args, 'detail', null);
+  const parts = _.get(args, 'parts', null);
+  return _.isNil(id) || _.isNil(name) || _.isNil(detail) || _.isNil(parts);
 };
 
 export default class Train {
@@ -13,6 +14,7 @@ export default class Train {
     this._id = args.id;
     this._name = args.name;
     this._detail = args.detail;
+    this._parts = args.parts;
   }
 
   static findById(id, collection) {
@@ -31,5 +33,9 @@ export default class Train {
 
   get detail() {
     return this._detail;
+  }
+
+  get parts() {
+    return this._parts;
   }
 }
