@@ -1,6 +1,6 @@
-import React from 'react';
-import classNames from 'classnames';
-import styles from './Footer.sass';
+import React from "react";
+import classNames from "classnames";
+import styles from "./Footer.sass";
 
 export default class Footer extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ export default class Footer extends React.Component {
   }
 
   render() {
-    const footerStyle = classNames('page-footer', styles.footer);
+    const footerStyle = classNames("page-footer", styles.footer);
     return (
       <footer className={footerStyle}>
         <div className="container">
@@ -23,12 +23,10 @@ export default class Footer extends React.Component {
         </div>
         <div className="footer-copy-right">
           <div className="container">
-            <p className="text">
-              © 2017 SLP-GuHoo
-            </p>
+            <p className="text">© 2017 SLP-GuHoo</p>
           </div>
         </div>
       </footer>
-    )
+    );
   }
 }

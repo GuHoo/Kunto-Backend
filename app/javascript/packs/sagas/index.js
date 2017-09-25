@@ -1,11 +1,11 @@
-import { takeEvery, fork, put } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
-import * as actions from '../actions';
-import { userRootSaga }  from './user';
-import { trainingRecordRootSaga } from './trainRecord';
-import { trainingSaga } from './train';
-import { trainingMenuSaga } from './trainMenu';
-import { userTrainMenuSaga } from './userTrainMenu';
+import { takeEvery, fork, put } from "redux-saga/effects";
+import { delay } from "redux-saga";
+import * as actions from "../actions";
+import { userRootSaga } from "./user";
+import { trainingRecordRootSaga } from "./trainRecord";
+import { trainingSaga } from "./train";
+import { trainingMenuSaga } from "./trainMenu";
+import { userTrainMenuSaga } from "./userTrainMenu";
 
 function* errorHandlingSaga(action) {
   const { payload } = action;

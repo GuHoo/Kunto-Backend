@@ -1,13 +1,18 @@
-import _ from 'lodash';
+import _ from "lodash";
 
 const invalidArguments = args => {
-  const id = _.get(args, 'id', null);
-  const trainId = _.get(args, 'train_id', null);
-  const count = _.get(args, 'count', null);
-  const setNumber = _.get(args, 'set_number', null);
-  const trainDate = _.get(args, 'train_date', null)
-  return _.isNil(id) || _.isNil(trainId) ||
-         _.isNil(count) || _.isNil(setNumber) || _.isNil(trainDate);
+  const id = _.get(args, "id", null);
+  const trainId = _.get(args, "train_id", null);
+  const count = _.get(args, "count", null);
+  const setNumber = _.get(args, "set_number", null);
+  const trainDate = _.get(args, "train_date", null);
+  return (
+    _.isNil(id) ||
+    _.isNil(trainId) ||
+    _.isNil(count) ||
+    _.isNil(setNumber) ||
+    _.isNil(trainDate)
+  );
 };
 
 export default class TrainRecord {

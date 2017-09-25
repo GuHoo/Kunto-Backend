@@ -1,10 +1,10 @@
-import _ from 'lodash';
+import _ from "lodash";
 
 const invalidArguments = args => {
-  const id = _.get(args, 'id', null);
-  const name = _.get(args, 'name', null);
-  const detail = _.get(args, 'detail', null);
-  const parts = _.get(args, 'parts', null);
+  const id = _.get(args, "id", null);
+  const name = _.get(args, "name", null);
+  const detail = _.get(args, "detail", null);
+  const parts = _.get(args, "parts", null);
   return _.isNil(id) || _.isNil(name) || _.isNil(detail) || _.isNil(parts);
 };
 

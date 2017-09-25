@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 const TrainingCheckbox = ({ id, checked, onChange }) => (
   <input
@@ -14,7 +14,7 @@ const TrainingCheckbox = ({ id, checked, onChange }) => (
 TrainingCheckbox.propTypes = {
   onChange: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  checked: PropTypes.any.isRequired,
+  checked: PropTypes.any.isRequired
 };
 
 export default TrainingCheckbox;

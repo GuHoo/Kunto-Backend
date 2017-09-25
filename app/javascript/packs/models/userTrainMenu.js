@@ -1,9 +1,9 @@
-import _ from 'lodash';
+import _ from "lodash";
 
 const invalidArguments = args => {
-  const id = _.get(args, 'id', null);
-  const trains = _.get(args, 'trains', null);
-  const menu = _.get(args, 'menu', null);
+  const id = _.get(args, "id", null);
+  const trains = _.get(args, "trains", null);
+  const menu = _.get(args, "menu", null);
   return _.isNil(id) || _.isNil(trains) || _.isNil(menu);
 };
 

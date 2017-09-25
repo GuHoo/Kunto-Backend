@@ -1,23 +1,23 @@
-import { get, delay, isEmpty } from 'lodash'
-import React from 'react';
-import { Switch, Router, Route, } from 'react-router-dom';
-import { connect } from 'react-redux';
-import Layout from './Layout';
-import Dashboard from '../components/dashboard';
-import Login from '../components/login';
-import Signup from '../components/signup';
-import My from '../components/my';
-import MenuEditor from '../components/menu_editor';
-import AuthRoute from '../components/auth';
-import NotFound from '../components/404';
-import TrainSelector from '../components/train_selector';
-import TrainRecoder from '../components/train_recorder';
-import * as actions from '../actions';
-import history from '../lib/history';
+import { get, delay, isEmpty } from "lodash";
+import React from "react";
+import { Switch, Router, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import Layout from "./Layout";
+import Dashboard from "../components/dashboard";
+import Login from "../components/login";
+import Signup from "../components/signup";
+import My from "../components/my";
+import MenuEditor from "../components/menu_editor";
+import AuthRoute from "../components/auth";
+import NotFound from "../components/404";
+import TrainSelector from "../components/train_selector";
+import TrainRecoder from "../components/train_recorder";
+import * as actions from "../actions";
+import history from "../lib/history";
 
-const getToken = e => get(e, 'token');
+const getToken = e => get(e, "token");
 const not = e => !e;
-const waitAnimate = (func) => delay(func, 1000);
+const waitAnimate = func => delay(func, 1000);
 
 class App extends React.Component {
   componentDidMount() {
@@ -28,7 +28,7 @@ class App extends React.Component {
 
   render() {
     const { state } = this.props;
-    const isAuthenticated = state >> getToken >> isEmpty >> not;
+    const isAuthenticated = ((state >> getToken) >> isEmpty) >> not;
     return (
       <Router history={history}>
         <Layout>
@@ -86,6 +86,4 @@ class App extends React.Component {
   }
 }
 
-export default App >> connect(
-  state => state.user
-);
+export default App >> connect(state => state.user);

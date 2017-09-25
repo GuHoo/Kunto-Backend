@@ -1,11 +1,11 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import styles from './Circular.sass';
-import classNames from 'classnames';
+import React from "react";
+import { connect } from "react-redux";
+import styles from "./Circular.sass";
+import classNames from "classnames";
 
 const Circular = ({ state }) => {
   if (!state) return <div className={styles.dummy} />;
-  const circle = classNames('circle', styles.circle);
+  const circle = classNames("circle", styles.circle);
   return (
     <div className={styles.container}>
       <div className="preloader-wrapper small active">
@@ -25,6 +25,4 @@ const Circular = ({ state }) => {
   );
 };
 
-export default Circular >> connect(
-  state => state.waitting
-);
+export default Circular >> connect(state => state.waitting);

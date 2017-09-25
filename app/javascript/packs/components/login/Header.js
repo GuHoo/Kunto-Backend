@@ -1,6 +1,6 @@
-import React from 'react';
-import classNames from 'classnames';
-import styles from './Header.sass';
+import React from "react";
+import classNames from "classnames";
+import styles from "./Header.sass";
 
 export default function Header() {
   return (

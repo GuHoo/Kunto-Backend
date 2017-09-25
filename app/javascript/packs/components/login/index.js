@@ -1,28 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import autoBind from 'react-autobind';
-import { trySignIn } from '../../actions';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import autoBind from "react-autobind";
+import { trySignIn } from "../../actions";
 
 class Login extends React.Component {
   static contextTypes = {
-    router: PropTypes.object,
-  }
+    router: PropTypes.object
+  };
 
   constructor(props, context) {
     super(props, context);
     this.state = {
-      email: '',
-      password: '',
+      email: "",
+      password: ""
     };
     autoBind(this);
   }
 
   onSubmit() {
-    this.state
-      >> trySignIn
-      >> this.props.dispatch;
+    (this.state >> trySignIn) >> this.props.dispatch;
   }
 
   onChangeEmail(e) {
@@ -41,7 +39,7 @@ class Login extends React.Component {
         <div className="row">
           <div className="col s1 m2" />
           <div className="col s10 m8">
-            <div className="card" style={{ marginTop: '30px' }}>
+            <div className="card" style={{ marginTop: "30px" }}>
               <div className="card-content">
                 <span className="card-title">ログイン</span>
                 <div className="row">
@@ -77,10 +75,8 @@ class Login extends React.Component {
         <div className="row">
           <div className="col s1 m2" />
           <div className="col s10 m8">
-            <div className="card" style={{ marginTop: '30px' }}>
-              <div className="card-content">
-                アカウントがない方はこちらからユーザーを作成してください
-              </div>
+            <div className="card" style={{ marginTop: "30px" }}>
+              <div className="card-content">アカウントがない方はこちらからユーザーを作成してください</div>
               <div className="card-action">
                 <Link to="/sign_up">ユーザーを作成する</Link>
               </div>
@@ -93,6 +89,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login >> connect(
-  state => state.user
-);
+export default Login >> connect(state => state.user);

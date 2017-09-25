@@ -1,28 +1,28 @@
-import _ from 'lodash';
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import autoBind from 'react-autobind';
-import * as actions from '../../actions';
+import _ from "lodash";
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import autoBind from "react-autobind";
+import * as actions from "../../actions";
 
 class Signup extends React.Component {
   static contextTypes = {
-    router: PropTypes.object,
-  }
+    router: PropTypes.object
+  };
 
   constructor(props, context) {
     super(props, context);
     this.state = {
-      email: '',
-      password: '',
-      passwordConfirmation: '',
+      email: "",
+      password: "",
+      passwordConfirmation: ""
     };
     autoBind(this);
   }
 
   componentWillMount() {
-    const token =_.get(this.props, ['state', 'token'], '');
-    if (token !== '') this.props.history.push('/my');
+    const token = _.get(this.props, ["state", "token"], "");
+    if (token !== "") this.props.history.push("/my");
   }
 
   onChangeEmail(e) {
@@ -41,9 +41,7 @@ class Signup extends React.Component {
   }
 
   onSubmitUserInfo() {
-    this.state
-      >> actions.trySignUp
-      >> this.props.dispatch;
+    (this.state >> actions.trySignUp) >> this.props.dispatch;
   }
 
   render() {
@@ -52,7 +50,7 @@ class Signup extends React.Component {
         <div className="row">
           <div className="col s1 m2" />
           <div className="col s10 m8">
-            <div className="card" style={{ marginTop: '30px' }}>
+            <div className="card" style={{ marginTop: "30px" }}>
               <div className="card-content">
                 <span className="card-title">ユーザー登録</span>
                 <div className="row">
@@ -84,7 +82,9 @@ class Signup extends React.Component {
                       value={this.state.passwordConfirmation}
                       onChange={this.onChangePasswordConfirmation}
                     />
-                    <label htmlFor="password_confirmation">Password (再入力)</label>
+                    <label htmlFor="password_confirmation">
+                      Password (再入力)
+                    </label>
                   </div>
                 </div>
               </div>
@@ -100,6 +100,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup >> connect(
-  state => state.user
-);
+export default Signup >> connect(state => state.user);

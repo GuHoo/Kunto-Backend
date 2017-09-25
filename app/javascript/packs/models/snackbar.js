@@ -1,11 +1,11 @@
 export default class Snackbar {
-  constructor({ message, isOpen } = { message: '', isOpen: false }) {
+  constructor({ message, isOpen } = { message: "", isOpen: false }) {
     this._message = message;
     this._isOpen = isOpen;
   }
 
   reset() {
-    this._message = ''
+    this._message = "";
   }
 
   get isOpen() {

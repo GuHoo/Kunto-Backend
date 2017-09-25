@@ -1,15 +1,15 @@
-import _ from 'lodash';
-import React from 'react';
-import autoBind from 'react-autobind';
-import { connect } from 'react-redux';
-import { fetchTrainingRecord, fetchUserTrainingMenu } from '../../actions';
+import _ from "lodash";
+import React from "react";
+import autoBind from "react-autobind";
+import { connect } from "react-redux";
+import { fetchTrainingRecord, fetchUserTrainingMenu } from "../../actions";
 
 class My extends React.Component {
   componentDidMount() {
     const { user } = this.props;
     const payload = { token: user.state.token };
-    _.defer(() => payload >> fetchUserTrainingMenu >> this.props.dispatch);
-    _.delay(() => payload >> fetchTrainingRecord >> this.props.dispatch, 200);
+    _.defer(() => (payload >> fetchUserTrainingMenu) >> this.props.dispatch);
+    _.delay(() => (payload >> fetchTrainingRecord) >> this.props.dispatch, 200);
   }
 
   render() {
@@ -23,6 +23,8 @@ class My extends React.Component {
   }
 }
 
-export default My >> connect(
-  state => ({ user: state.user, trainingRecords: state.trainingRecords }),
-);
+export default My >>
+  connect(state => ({
+    user: state.user,
+    trainingRecords: state.trainingRecords
+  }));
