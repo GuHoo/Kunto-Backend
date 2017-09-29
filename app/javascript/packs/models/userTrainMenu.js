@@ -4,7 +4,8 @@ const invalidArguments = args => {
   const id = _.get(args, "id", null);
   const trains = _.get(args, "trains", null);
   const menu = _.get(args, "menu", null);
-  return _.isNil(id) || _.isNil(trains) || _.isNil(menu);
+  const todayMenu = _.get(args, 'today_menu', null);
+  return _.isNil(id) || _.isNil(trains) || _.isNil(menu) || _.isNil(todayMenu);
 };
 
 export default class UserTrainMenu {
@@ -13,6 +14,7 @@ export default class UserTrainMenu {
     this._id = args.id;
     this._trains = args.trains;
     this._menu = args.menu;
+    this._todayMenu = args.today_menu;
   }
 
   get id() {
@@ -25,5 +27,9 @@ export default class UserTrainMenu {
 
   get menu() {
     return this._menu;
+  }
+
+  get todayMenu() {
+    return this._todayMenu;
   }
 }

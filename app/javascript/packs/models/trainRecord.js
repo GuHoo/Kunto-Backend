@@ -44,4 +44,14 @@ export default class TrainRecord {
   get trainDate() {
     return this._trainDate;
   }
+
+  get attributes() {
+    return {
+      id: this.id,
+      trainId: this.trainId,
+      count: this.count,
+      setNumber: this.setNumber,
+      trainDate: this.trainDate
+    };
+  }
 }
