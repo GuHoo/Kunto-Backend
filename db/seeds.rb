@@ -542,3 +542,49 @@ TrainRecord.create(
 )
 
 
+TrainRecord.create(
+  train_date: Time.parse('2017-09-18 12:00'),
+  train_id: hip_raise.id,
+  user_id: user.id,
+  count: 27,
+  set_number: 1
+)
+TrainRecord.create(
+  train_date: Time.parse('2017-09-10 13:00'),
+  train_id: hip_raise.id,
+  user_id: user.id,
+  count: 12,
+  set_number: 2
+)
+
+
+TrainRecord.create(
+  train_date: Time.parse('2017-09-12 14:00'),
+  train_id: push_up.id,
+  user_id: user.id,
+  count: 11,
+  set_number: 1
+)
+TrainRecord.create(
+  train_date: Time.parse('2017-09-12 15:00'),
+  train_id: push_up.id,
+  user_id: user.id,
+  count: 21,
+  set_number: 2
+)
+
+
+TrainRecord.create(
+  train_date: Time.parse('2017-09-14 14:00'),
+  train_id: squat.id,
+  user_id: user.id,
+  count: 27,
+  set_number: 1
+)
+TrainRecord.create(
+  train_date: Time.parse('2017-09-14 15:00'),
+  train_id: squat.id,
+  user_id: user.id,
+  count: 35,
+  set_number: 2
+)

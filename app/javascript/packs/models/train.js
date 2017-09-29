@@ -18,7 +18,7 @@ export default class Train {
   }
 
   static findById(id, collection) {
-    const scope = t => t.id === id;
+    const scope = t => t.id == id;
     if (collection == null) return c => c.find(scope);
     return collection.find(scope);
   }
