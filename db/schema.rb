@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20170916034449) do
     t.integer "user_id", null: false
     t.integer "count", null: false
     t.integer "set_count", null: false
-    t.date "train_week_day", null: false
+    t.integer "train_week_day", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

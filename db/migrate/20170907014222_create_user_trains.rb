@@ -5,7 +5,7 @@ class CreateUserTrains < ActiveRecord::Migration[5.1]
       t.integer :user_id, null: false
       t.integer :count, null: false
       t.integer :set_count, null: false
-      t.date :train_week_day, null: false
+      t.integer :train_week_day, null: false
 
       t.timestamps
     end

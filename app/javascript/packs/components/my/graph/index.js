@@ -56,8 +56,8 @@ export default class Glaph extends Component {
     const result = {};
     const take = R.take(this.state.dataNum);
     const getCountEach = R.forEachObjIndexed((recordList, key) => {
-      const name = Train.findById(key, this.maybeTrains.join()).name;
-      result[name] = (recordList >> R.map(record => record.count)) >> take;
+      const train = Train.findById(key, this.maybeTrains.join());
+      result[train.name] = (recordList >> R.map(record => record.count)) >> take;
     });
     ((this.maybeRecords.join() >> map) >> groupBy) >> getCountEach;
     return result;

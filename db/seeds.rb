@@ -80,7 +80,7 @@ UserTrain.create(
   user_id: user.id,
   train_id: crunch.id,
   count: 30,
-  train_week_day: (Date.new(2000, 1, 1) + 1) + 6,
+  train_week_day: 6,
   set_count: 2
 )
 MenuTrain.create(
@@ -95,7 +95,7 @@ UserTrain.create(
   user_id: user.id,
   train_id: squat.id,
   count: 30,
-  train_week_day: (Date.new(2000, 1, 1) + 1) + 4,
+  train_week_day: 4,
   set_count: 2
 )
 MenuTrain.create(
@@ -110,7 +110,7 @@ UserTrain.create(
   user_id: user.id,
   train_id: push_up.id,
   count: 10,
-  train_week_day: (Date.new(2000, 1, 1) + 1) + 2,
+  train_week_day: 2,
   set_count: 2
 )
 MenuTrain.create(
@@ -125,7 +125,7 @@ UserTrain.create(
   user_id: user.id,
   train_id: hip_raise.id,
   count: 20,
-  train_week_day:  (Date.new(2000, 1, 1) + 1) + 0,
+  train_week_day:  0,
   set_count: 2
 )
 MenuTrain.create(
