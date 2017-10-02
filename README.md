@@ -37,6 +37,8 @@ Design
 
 ![](./.github/erd.png)
 ![](./.github/infrastructure.svg)
+![](./.github/design1.png)
+![](./.github/design2.png)
 
 QuickStart
 ---
